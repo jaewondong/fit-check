@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 /*
@@ -47,6 +47,7 @@ export default function Login() {
     }
 
     //Handles the submit button
+    //Send the user's login info to the backend and authenticate it.
     const handleSubmit = async event => {
         event.preventDefault();
         let response = null;
@@ -60,17 +61,14 @@ export default function Login() {
         console.log(response);
 
         if (response.data) {
-            login(response.data)
+            login(response.data);
         } else {
             showErrorMsg("Invalid Password");
         }
-        
-        
     }
-
      
     return (
-        <div className = "login-page">
+        <div className = "login">
             <h1>Please log in to your closet</h1>
             <form onSubmit={handleSubmit}>
                 <label>

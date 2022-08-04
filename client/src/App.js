@@ -8,16 +8,20 @@ import SignUp from './components/SignUp';
 import Closet from './components/Closet';
 import ProtectedRoute from './components/ProtectedRoute';
 
+import logo from './assets/images/logo1.png';
+
 
 
 function App() {
 
 
     return (
-        <div className="wrapper">
+        <div className="app">
           
                 <BrowserRouter>
-                <Link to='/'>Logo</Link>
+                <Link to="/">
+                  <img src={logo} className="logo" alt="logo"/>
+                </Link>
                  <Routes>
                     <Route path="/" exact element={<Home />} />
                     <Route path="/signup" exact element={<SignUp />} />

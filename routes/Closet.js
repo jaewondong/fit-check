@@ -8,22 +8,22 @@ class Closet {
         return USER.findOne({username: username});
     }
 
-    saveClosetData = async (username, closetData) => {
-        const filter = {
+    addClosetData = async (username, closetData) => {
+        let data = null;
+        console.log(username);
+        console.log(closetData)
+        await USER.findOneAndUpdate({
             username: username
-        }
+        }, {
+            $push: { closet: closetData }
+        })
+        .then(response => data = response.closet)
+        .catch(error => console.error(error))
+        return data;
 
-        const replace = {
-            ...filter,
-            ...closetData
-        }
-
-        await this.findOneReplace(filter, closetData);
+        
     }
 
-    findOneReplace = async (filter, replace) => {
-        await USER.findOneAndReplace(filter, replace, {new: true, upsert: true});
-    }
 }
 
 module.exports = Closet;

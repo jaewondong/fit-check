@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
 const closetSchema = new mongoose.Schema({
-    clothingType: String,
-    color: String
+    label: String,
+    type: String,
+    color: {
+        r: Number,
+        g: Number,
+        b: Number,
+    }
 });
 
 const UserSchema = new mongoose.Schema({

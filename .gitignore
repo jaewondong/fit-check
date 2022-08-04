@@ -9,3 +9,5 @@ node_modules
 
 #testing
 /coverage
+
+test.http
