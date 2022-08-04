@@ -11,3 +11,7 @@ node_modules
 /coverage
 
 test.http
+
+yarn.lock
+package.json
+package-lock.json
