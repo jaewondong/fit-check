@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './ProtectedRoute';
 
 
-                    
 export default function Home() {
     let navigate = useNavigate();
     const loggedIn = useAuth();
+
 
     //Checks if the user has already logged in when the user enters the website
     //If true, direct the user to their closet.
@@ -34,3 +34,4 @@ export default function Home() {
         </div>
     );
 }
+

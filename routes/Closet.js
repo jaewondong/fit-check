@@ -8,20 +8,31 @@ class Closet {
         return USER.findOne({username: username});
     }
 
-    addClosetData = async (username, closetData) => {
+    addClothingData = async (username, clothingData) => {
         let data = null;
-        console.log(username);
-        console.log(closetData)
         await USER.findOneAndUpdate({
             username: username
         }, {
-            $push: { closet: closetData }
+            $push: { closet: clothingData }
         })
         .then(response => data = response.closet)
         .catch(error => console.error(error))
         return data;
 
         
+    }
+
+    delClothingData = async (username, clothingData) => {
+        let data = null;
+        console.log(clothingData);
+        await USER.findOneAndUpdate({
+            username: username
+        }, {
+            $pull: { closet: clothingData }
+        })
+        .then(response => data = response.closet)
+        .catch(error => console.error(error))
+        return data;
     }
 
 }

@@ -93,7 +93,22 @@ router.post('/addClothing', async (req, res) => {
         const username = req.body.username;
         const clothing = req.body.clothing;
         let closet = new Closet();
-       let clothingData = await closet.addClosetData(username, clothing)
+        let clothingData = await closet.addClothingData(username, clothing)
+        res.header("Content-Type", 'application/json');
+        res.send(clothingData); // previous state of closet
+    } catch {
+        res.status(500).send()
+    }
+})
+
+//Handles the user's request to delete a clothing item to the closet.
+//Deletes it from the mongoDB.
+router.post('/delClothing', async (req, res) => {
+    try {
+        const username = req.body.username;
+        const clothing = req.body.clothing;
+        let closet = new Closet();
+        let clothingData = await closet.delClothingData(username, clothing)
         res.header("Content-Type", 'application/json');
         res.send(clothingData); // previous state of closet
     } catch {

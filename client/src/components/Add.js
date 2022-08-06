@@ -3,14 +3,12 @@ import Select from 'react-select';
 import { SketchPicker } from 'react-color';
 
 const clothingOptions = [
-    {label: "Shirts", value: "top"},  {label: "T-Shirts", value: "top"},
-    {label: "Sweatshirts", value: "top"},  {label: "Jacket", value: "top-outer"},
-    {label: "Hoodie", value: "top"},  {label: "Tanks", value: "top"},
-    {label: "Shorts", value: "bot"},  {label: "Pants", value: "bot"},
-    {label: "Jeans", value: "bot"},  {label: "Skirts", value: "bot"},
-    {label: "Dress", value: "all"}, {label: "Coat", value: "top-outer"},
-    {label: "Sneakers", value: "shoes"}, {label: "Boots", value: "shoes"},
-    {label: "Heals", value: "shoes"}
+    {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
+    {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"},  
+    {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
+    {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
+    {label: "Dress", value: "all"}, {label: "Sneakers", value: "shoes"},
+    {label: "Boots", value: "shoes"}, {label: "Heels", value: "shoes"}
 ];
 
 
@@ -43,7 +41,6 @@ function Add({ handleAdd }) {
             resetState();
              //JSON object
         }
-        //console.log(clothingType);
     }
 
     //Reset the state variables when the user clicks submit.
@@ -61,12 +58,14 @@ function Add({ handleAdd }) {
             <form onSubmit={handleSubmit}>
                 <div>
                     <Select
+                        className="clothingSelect"
                         placeholder='Select Your Clothing'
                         onChange={opt => setClothingType({label: opt.label, type: opt.value})}
                         options={clothingOptions}
                     />
                     <h3>Pick the color</h3>
                     <SketchPicker
+                        className="colorPicker"
                         color={color}
                         disableAlpha={true}
                         onChangeComplete={color => setColor(color.rgb)}
@@ -74,7 +73,7 @@ function Add({ handleAdd }) {
                     
                 </div>
                 <div>
-                    <button type="submit">Add</button>
+                    <button type="submit" className="btn">Add</button>
                 </div>
             </form>
 
@@ -85,14 +84,3 @@ function Add({ handleAdd }) {
 }
 
 export default Add;
-
-/*{label: '', clothingType: ''}
-onChange={opt => setClothingType({label: opt.label, clothingType: opt.value})}
-<Select
-                    placeholder='Select Your Clothing'
-                    
-                    options={clothingOptions}/>
-                    <SliderPicker
-                    color="#ff0000"
-                    onChangeComplete={color => console.log(color.rgb)}/>
- */
