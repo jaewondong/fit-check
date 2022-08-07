@@ -7,7 +7,7 @@ const clothingOptions = [
     {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"},  
     {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
     {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
-    {label: "Dress", value: "all"}, {label: "Sneakers", value: "shoes"},
+     {label: "Sneakers", value: "shoes"},
     {label: "Boots", value: "shoes"}, {label: "Heels", value: "shoes"}
 ];
 
@@ -32,10 +32,26 @@ function Add({ handleAdd }) {
         } else {
             let type = clothingType.type;
             let lab = clothingType.label;
+            let col = color;
+            //Hanldes the error case where the color api finds wrong color scheme
+            //if the color is completely black or white (0 or 255).
+            if (col.r + col.g + col.b == 0) {
+                col = {
+                    r: 1,
+                    g: 1,
+                    b: 1
+                }
+            } else if (col.r == 255 && col.g == 255 && col.b == 255) {
+                col = {
+                    r: 254,
+                    g: 254,
+                    b: 254
+                }
+            }
             const clothing = {
                 type: type,
                 label: lab,
-                color: color
+                color: col
             }
             handleAdd(clothing);
             resetState();

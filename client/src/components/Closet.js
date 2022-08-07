@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Add from './Add';
 import Clothing from './Clothing';
@@ -108,7 +108,8 @@ function Closet() {
             {del? <button onClick={showDel} className='btn'>Cancel</button>
             : <button onClick={showDel} className='btn'>Remove</button>}
 
-            <button onClick={logout} className="btn">Log Out</button>
+            <button onClick={logout} className="btn">Sign Out</button>
+            <Link to='/closet/bestFits'>Find Your Best Fits</Link>
         </div>
     )
 }

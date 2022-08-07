@@ -116,5 +116,20 @@ router.post('/delClothing', async (req, res) => {
     }
 })
 
+//Handles the user's request to find the best fits from the closet.
+router.post('/findBestFits', async (req, res) => {
+    try {
+        const username = req.body.username;
+        let closet = new Closet();
+        const data = await closet.getClosetData(username);
+        const clothingItems = data.closet;
+        let bestFits = closet.findBestFits(clothingItems)
+        
+        res.send(bestFits);
+    } catch {
+        res.status(500).send()
+    }
+})
+
 
 module.exports = router;

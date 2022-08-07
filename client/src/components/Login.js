@@ -2,17 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import '../stylesheets/Login.css';
 
-/*
-async function loginUser(credentials) {
-    return fetch('http://localhost:3000/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    }).then(data => data.json())
-} */
 
 export default function Login() {
     const [username, setUserName] = useState('');
@@ -40,11 +31,6 @@ export default function Login() {
         setPassword('');
     }
 
-    //Shows error message when the user enters wrong username or password.
-    const showErrorMsg = (message) => {
-        setError(true);
-        setTimeout(setError(false), 3000);
-    }
 
     //Handles the submit button
     //Send the user's login info to the backend and authenticate it.
@@ -60,10 +46,11 @@ export default function Login() {
         resetState();
         console.log(response);
 
-        if (response.data) {
-            login(response.data);
+        if (response == null) {
+            setError(true);
         } else {
-            showErrorMsg("Invalid Password");
+            setError(false);
+            login(response.data);
         }
     }
      
@@ -71,23 +58,24 @@ export default function Login() {
         <div className = "login">
             <h1>Please log in to your closet</h1>
             <form onSubmit={handleSubmit}>
-                <label>
+                <section className='login-form'>
                     <p>Username</p>
-                    <input type="text" className="login-form" 
+                    <input type="text" className="login-input" 
                         value={username}
                         onChange={event => setUserName(event.target.value)}
                         placeholder="Enter your username" />
-                </label>
-                <label>
+                </section>
+                <section className="login-form">
                     <p>Password</p>
-                    <input type="password" className="login-form"
+                    <input type="password" className="login-input"
                         value={password}
                         onChange={event => setPassword(event.target.value)}
                         placeholder="Enter your password" />
-                </label>
+                </section>
+                {error? <div className="error">Incorrect username or password</div>: null}
                 
                 <div>
-                    <button type="submit">Log In</button> 
+                    <button type="submit">Sign In</button> 
                 </div>
             </form>
         </div>

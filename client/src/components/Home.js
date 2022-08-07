@@ -30,8 +30,12 @@ export default function Home() {
             }}>Sign Up</button>
             <button onClick={() => {
                 navigate("/login");
-            }}>Log In</button>
+            }}>Sign In</button>
         </div>
     );
 }
+
+/*<button onClick={() => {
+                navigate("/signup");
+            }}>Sign Up</button> */
 
