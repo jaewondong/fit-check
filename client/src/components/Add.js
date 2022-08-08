@@ -89,7 +89,6 @@ function Add({ handleAdd }) {
                         disableAlpha={true}
                         onChangeComplete={color => setColor(color.rgb)}
                     />
-                    
                 </div>
                 {error? <div className="error">Please select your type of clothing</div>: null}
                 <div>

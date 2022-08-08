@@ -85,7 +85,7 @@ function BestFits() {
                 </div>
             </section>
             
-            <button onClick={() => {navigate('/closet')}}>Closet</button>
+            <button className = "closet-btn" onClick={() => {navigate('/closet')}}>Closet</button>
         </div>
     )
 }

@@ -1,0 +1,44 @@
+.guest {
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+}
+
+.guest-content {
+    display: inline-flex;
+}
+
+.add-slide {
+    background-color: rgba(247, 247, 247, 0.985);
+    border-radius: 30px;
+    border: solid 1px rgba(101, 101, 101, 0.76);
+    padding: 15px 15px;
+    margin-right: 2rem;
+}
+
+.clothingSelectGuest {
+    position:relative;
+    width: 20rem;
+    margin: auto;
+    text-align: center;
+}
+
+.colorPickerGuest {
+    margin: auto;
+}
+
+.add-btnG {
+    margin: auto;
+    margin-top: 15px;
+    background-color: rgb(97, 97, 97);
+}
+
+.add-btnG:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+.closet-clothing-guest {
+    display: inline-block;
+    justify-content: center;
+    width: 15rem;
+}

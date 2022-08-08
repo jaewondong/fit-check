@@ -4,6 +4,8 @@ import Select from 'react-select';
 import { SketchPicker } from 'react-color';
 import Clothing from "./Clothing";
 
+import '../stylesheets/Guest.css';
+
 const topOptions = [
     {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
     {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"}
@@ -104,45 +106,50 @@ function Guest() {
 
     return (
         <div className="guest">
-            <h2>Calculate fit score based on color theory</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="add-slide">
-                    <h3>Choose Your {value}</h3>
-                    <Select
-                        className="clothingSelectGuest"
-                        placeholder='Select Your Clothing'
-                        onChange={opt => setClothingType({label: opt.label, type: opt.value})}
-                        options={getOptions()}
-                    />
-                    <h3>Pick Color</h3>
-                    <SketchPicker
-                        className="colorPickerGuest"
-                        color={color}
-                        disableAlpha={true}
-                        onChangeComplete={color => setColor(color.rgb)}
-                    />
-                </div>
-                {error? <div className="error">Please select your clothing</div>: null}
-                <div>
-                    {value === "Calculate"?
-                        <button type="submit" className="add-btn">Calculate</button> 
-                        :
-                        <button type="submit" className="add-btn">Add</button>
-                    }
+            <h2 className="guest-text">Calculate Fit Score Based On Color Theory</h2>
+            <div className="guest-content">
+                <form onSubmit={handleSubmit}>
+                    <div className="add-slide">
+                        <h3>Choose Your {value}</h3>
+                        <Select
+                            className="clothingSelectGuest"
+                            placeholder='Select Your Clothing'
+                            onChange={opt => setClothingType({label: opt.label, type: opt.value})}
+                            options={getOptions()}
+                        />
+                        <h3>Pick Color</h3>
+                        <SketchPicker
+                            className="colorPickerGuest"
+                            color={color}
+                            disableAlpha={true}
+                            onChangeComplete={color => setColor(color.rgb)}
+                        />
+                        {error? <div className="error">Please select your clothing</div>: null}
+                        {value === "Calculate"?
+                            <button type="submit" className="add-btnG">Calculate</button> 
+                            :
+                            <button type="submit" className="add-btnG">Add</button>
+                        }
+                    <div>
+                        
+                        
+                    </div>
+                    </div>
                     
-                </div>
-            </form>
+                </form>
             
-            <div className='closet-clothing'> 
-                {outfit.map(clothing => {
-                    return (<Clothing 
-                        key={generateKey(clothing, clothing.label)}
-                        type={clothing.type}
-                        label={clothing.label}
-                        color={clothing.color}
-                        showDelete={false}
-                    />)
-                })} 
+                <div className='closet-clothing-guest'> 
+                    <h3>Outfit</h3>
+                    {outfit.map(clothing => {
+                        return (<Clothing 
+                            key={generateKey(clothing, clothing.label)}
+                            type={clothing.type}
+                            label={clothing.label}
+                            color={clothing.color}
+                            showDelete={false}
+                        />)
+                    })} 
+                </div>
             </div>
         </div>
     )

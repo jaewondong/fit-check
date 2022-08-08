@@ -3,7 +3,7 @@ import Clothing from "./Clothing";
 
 function Outfit({ items }) {
     return (
-        <label className='outfit'> 
+        <div className='outfit'> 
             {items.map(clothing => {
                 return (<Clothing 
                     key={clothing._id}
@@ -13,7 +13,7 @@ function Outfit({ items }) {
                     showDelete={false}
                 />)
             })} 
-        </label>
+        </div>
     )
 }
 

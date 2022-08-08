@@ -20,14 +20,14 @@ function Clothing({ type, label, color, handleDelete, showDelete }) {
 
     
     return(
-        <label>
-           <div className="item">
-                <Icon label={label} fill={colorRGB} />
-            </div>
-            <div className="delete">
-             {showDelete? <button onClick={handleClick}>x</button> : null }
-            </div>
-        </label>
+        <div className="clothingItem">
+           
+            <Icon label={label} fill={colorRGB} />
+            
+            
+             {showDelete? <button className="delete" onClick={handleClick}>X</button> : null }
+            
+        </div>
        
         
     )

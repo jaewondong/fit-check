@@ -5,7 +5,7 @@
     margin-bottom: 1rem;
 }
 
-.btn button {
+button {
     display: inline-block;
     margin-right: 1rem;
     padding: 9px 25px;
@@ -48,9 +48,31 @@
 }
 
 .btn .add-page {
-    width: 20rem;
+    width: 22rem;
     position: absolute;
     z-index: 1;
-    z-index: 1;
     right: 7rem;
+}
+
+.closet-clothing {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(10, minmax(0, 1fr));
+    grid-gap: 5px;
+    margin: 0 5rem;
+}
+
+.outfit {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.closet-btn {
+    background-color: rgb(114, 65, 65);
+}
+
+.closet-btn:hover {
+    background-color: rgb(78, 37, 37);
 }

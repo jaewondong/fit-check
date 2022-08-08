@@ -3,6 +3,9 @@ import React from "react";
 //SVG Files for Clothing. 
 //@params {fill}: rgb(r,g,b) color of the clothing
 
+const height = "128pt";
+const width = "183pt";
+
 
 export const TShirt2 = ({fill}) => {
         return (
@@ -31,7 +34,7 @@ export const TShirt2 = ({fill}) => {
 export const TShirt = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="100.000000pt" height="105.000000pt" viewBox="0 0 1174.000000 1280.000000"
+            width={width} height={height} viewBox="-20 -35 1280 1380"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -75,7 +78,7 @@ export const TShirt = ({fill}) => {
 export const Jacket = ({fill}) => {
     return (
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-        width="128.000000pt" height="99.000000pt" viewBox="0 0 1280.000000 998.000000"
+        width={width} height={height} viewBox="50 0 1280 1080"
         preserveAspectRatio="xMidYMid meet">
         <metadata>
         Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -505,7 +508,7 @@ export const Jacket = ({fill}) => {
 export const Hoodie = ({fill}) => {
     return(
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="130.000000pt" height="128.000000pt" viewBox="0 0 1000.000000 1280.000000"
+            width={width} height={height} viewBox="0 0 1000.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -544,7 +547,7 @@ export const Hoodie = ({fill}) => {
 export const Shirts = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="150.000000pt" height="128.000000pt" viewBox="150 0 1000.000000 1280.000000"
+            width={width} height={height} viewBox="50 0 1000.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -758,7 +761,7 @@ export const Shirts = ({fill}) => {
 export const Pants = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="150.000000pt" height="128.000000pt" viewBox="0 0 640.000000 1280.000000"
+            width={width} height={height} viewBox="0 0 640 1300"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -781,7 +784,7 @@ export const Pants = ({fill}) => {
 export const WidePants = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="140.000000pt" height="128.000000pt" viewBox="0 0 672.000000 1280.000000"
+            width={width} height={height} viewBox="0 0 672.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -804,7 +807,7 @@ export const WidePants = ({fill}) => {
 export const Shorts = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="128.000000pt" height="110.000000pt" viewBox="0 0 1280.000000 1100.000000"
+            width={width} height={height} viewBox="0 -500 1280 2000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -835,7 +838,7 @@ export const Shorts = ({fill}) => {
 export const Skirt = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="130.000000pt" height="128.000000pt" viewBox="0 0 935.000000 1280.000000"
+            width={width} height={height} viewBox="0 -500 935 2000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -861,7 +864,7 @@ export const Skirt = ({fill}) => {
 export const Dress = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="130.000000pt" height="128.000000pt" viewBox="0 0 884.000000 1280.000000"
+            width={width} height={height} viewBox="0 0 884.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -927,7 +930,7 @@ export const Dress = ({fill}) => {
 export const Sneakers = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="128.000000pt" height="128.000000pt" viewBox="-250 -400 1700 1700"
+            width={width} height={height} viewBox="-250 -700 1700 2000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -971,7 +974,7 @@ export const Sneakers = ({fill}) => {
 export const Boots = ({fill}) => {
     return (
             <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                width="128.000000pt" height="128.000000pt" viewBox="-350 -350 2000 2000"
+                width={width} height={height} viewBox="-350 -400 2000 2000"
                 preserveAspectRatio="xMidYMid meet">
                 <metadata>
                 Created by potrace 1.15, written by Peter Selinger 2001-2017
@@ -1670,7 +1673,7 @@ export const Boots = ({fill}) => {
 export const Heels = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width="128.000000pt" height="128.000000pt" viewBox="-350 -350 2000 2000"
+            width={width} height={height} viewBox="-400 -800 2000 2300"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017

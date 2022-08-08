@@ -7,8 +7,9 @@
 }
 
 .clothingSelect {
-    width: 15rem;
+    width: 18rem;
     margin-left: auto;
+    margin-top: auto;
     text-align: left;
 }
 
@@ -22,6 +23,5 @@
 }
 
 .add-btn:hover {
-    margin-top: 15px;
     background-color: rgb(53, 53, 53);
 }
