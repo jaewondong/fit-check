@@ -1,6 +1,8 @@
 
 label {
     display: inline-block;
+    justify-content: center;
+    align-items: center;
     position: relative;
 }
 
@@ -8,7 +10,8 @@ label .item {
     display: block;
     width: 200px;
     height: 200px;
-    background-color: rgb(205, 222, 231);
+    border: solid 1px rgb(0, 0, 0);
+    border-radius: 7px;
 }
 
 label .delete {

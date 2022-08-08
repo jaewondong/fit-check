@@ -75,15 +75,11 @@ router.post('/closet', async (req, res) => {
         console.log("requsername: "+req.body.username);
         const data = await closet.getClosetData(req.body.username);
         
-        //console.log(data);
         const closetData = data.closet;
-        console.log("closet data:" + closetData);
         res.send(closetData);
     } catch {
         res.status(500).send();
     }
-    
-    
 })
 
 //Handles the user's request to add a clothing item to the closet.
@@ -97,7 +93,7 @@ router.post('/addClothing', async (req, res) => {
         res.header("Content-Type", 'application/json');
         res.send(clothingData); // previous state of closet
     } catch {
-        res.status(500).send()
+        res.status(500).send();
     }
 })
 
@@ -112,7 +108,7 @@ router.post('/delClothing', async (req, res) => {
         res.header("Content-Type", 'application/json');
         res.send(clothingData); // previous state of closet
     } catch {
-        res.status(500).send()
+        res.status(500).send();
     }
 })
 
@@ -123,11 +119,27 @@ router.post('/findBestFits', async (req, res) => {
         let closet = new Closet();
         const data = await closet.getClosetData(username);
         const clothingItems = data.closet;
-        let bestFits = closet.findBestFits(clothingItems)
-        
+        let bestFits = await closet.findBestFits(clothingItems);
+        res.header("Content-Type", 'application/json');
         res.send(bestFits);
     } catch {
-        res.status(500).send()
+        res.status(500).send();
+    }
+})
+
+//Handles the user's request to calculate the score of an outfit chosen.
+router.post('/score', async (req, res) => {
+    try {
+        const outfit = req.body.outfit;
+        const top = outfit.find(clothing => clothing.type == "top");
+        const bot = outfit.find(clothing => clothing.type == "bot");
+        const shoes = outfit.find(clothing => clothing.type == "shoes");
+        let closet = new Closet();
+        let result = await closet.findScores(top, bot, shoes);
+        res.header("Content-Type", 'application/json');
+        res.send(result);
+    } catch {
+        res.status(500).send();
     }
 })
 

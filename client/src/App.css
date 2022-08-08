@@ -1,5 +1,22 @@
+
+@font-face {
+  font-family: OpenSans;
+  font-style: normal;
+  font-weight: 450;
+  src: url("./assets/fonts/OpenSans-VariableFont.ttf") format('truetype')
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
 .App {
   text-align: center;
+  font-family: OpenSans, sans-serif;
+  font-weight: 100;
 }
 
 .App-logo {
@@ -7,32 +24,3 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

@@ -2,6 +2,58 @@
     justify-content: center;
 }
 
+.login img {
+    padding-top: 3rem;
+}
+
+.login-form {
+    padding: 5px;
+}
+
+.login-guest-link {
+    color: black;
+    transition: all 0.3s ease 0s;
+    text-decoration: solid underline 1px;
+}
+
+.login-guest-link:hover {
+    color: rgb(24, 61, 175);
+}
+
+.login-form p {
+    display: flex;
+    margin: 0;
+}
+
+.login-form input {
+    padding: 15px 20px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border-width: 1px;
+    font-size: 0.8rem;
+}
+
 .error {
-    color: rgb(172, 28, 28)
+    color: rgba(139, 28, 28, 0.818)
+}
+
+.login-btn {
+    padding-top: 15px;
+}
+
+.login-btn button {
+    padding: 5px 80px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 1rem;
+    font-family: OpenSans, sans-serif;
+    color: white;
+    background-color: rgba(16, 16, 21, 0.771);
+}
+
+.login-btn button:hover {
+    background-color: rgba(0, 0, 0, 0.889);
 }

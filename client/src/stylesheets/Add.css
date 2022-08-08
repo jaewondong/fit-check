@@ -1,0 +1,27 @@
+
+.add-tab {
+    background-color:rgba(247, 247, 247, 0.985);
+    border-radius: 30px;
+    border: solid 1px rgba(101, 101, 101, 0.76);
+    padding: 15px 15px;
+}
+
+.clothingSelect {
+    width: 15rem;
+    margin-left: auto;
+    text-align: left;
+}
+
+.colorPicker {
+    margin-left: auto;
+}
+
+.add-btn {
+    margin-top: 15px;
+    background-color: rgb(97, 97, 97);
+}
+
+.add-btn:hover {
+    margin-top: 15px;
+    background-color: rgb(53, 53, 53);
+}

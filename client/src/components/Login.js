@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import logo from '../assets/images/logo1.png';
 import '../stylesheets/Login.css';
 
 
@@ -37,6 +38,9 @@ export default function Login() {
     const handleSubmit = async event => {
         event.preventDefault();
         let response = null;
+        if (!username || !password) {
+            return setError(true);
+        }
         await axios.post('/login', {
             username, password
         })
@@ -46,7 +50,7 @@ export default function Login() {
         resetState();
         console.log(response);
 
-        if (response == null) {
+        if (!response || !response.data) {
             setError(true);
         } else {
             setError(false);
@@ -56,26 +60,27 @@ export default function Login() {
      
     return (
         <div className = "login">
-            <h1>Please log in to your closet</h1>
+            <img src={logo} className="logo" alt="logo"/>
+            <h2>Sign in to your closet</h2>
             <form onSubmit={handleSubmit}>
                 <section className='login-form'>
-                    <p>Username</p>
                     <input type="text" className="login-input" 
                         value={username}
                         onChange={event => setUserName(event.target.value)}
-                        placeholder="Enter your username" />
+                        placeholder="Username" />
                 </section>
                 <section className="login-form">
-                    <p>Password</p>
                     <input type="password" className="login-input"
                         value={password}
                         onChange={event => setPassword(event.target.value)}
-                        placeholder="Enter your password" />
+                        placeholder="Password" />
                 </section>
                 {error? <div className="error">Incorrect username or password</div>: null}
-                
-                <div>
-                    <button type="submit">Sign In</button> 
+                <div className="login-btn">
+                    <button type="submit" className='signin-btn'>Sign In</button> 
+                </div>
+                <div className='login-guest'>
+                    <h3>Or explore as <a href='/guest' className="login-guest-link">Guest→</a></h3>
                 </div>
             </form>
         </div>

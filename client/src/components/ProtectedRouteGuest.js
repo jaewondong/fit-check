@@ -4,9 +4,9 @@ import { Navigate } from 'react-router-dom'
 
 
 export const useAuth = () => {
-  const user = localStorage.getItem('user');
+  const outfit = localStorage.getItem('outfit');
 
-  if (user) {
+  if (outfit) {
     return true;
   } else {
     return false;
@@ -14,13 +14,13 @@ export const useAuth = () => {
   
 }
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRouteGuest = ({ children }) => {
 
   const auth = useAuth();
   //const navigate = useNavigate();
 
   //Checks if the user is autenthicated.
-  return auth? children : <Navigate to="/login" />
+  return auth? children : <Navigate to="/" />
 }
 
-export default ProtectedRoute;
+export default ProtectedRouteGuest;

@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/images/logo1.png';
+import '../stylesheets/Login.css'
 
 
 export default function SignUp() {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const navigate = useNavigate();
 
     const resetState = () => {
         setUserName('');
-        setPassword('');
+        setPassword('');    
     }
 
     //Saves the login info to localStorage and redirect the route to the user's closet page
@@ -35,39 +39,47 @@ export default function SignUp() {
             .catch((error) => console.error(error));
 
             resetState();
-            console.log(response);
             if (response !== null) {
                 login(response.data);
+                setError(false);
+                setErrorMsg('');
             } else {
-                console.log("The username is already taken.");
+                setError(true);
+                setErrorMsg('The username is already taken');
             }
             
         } else {
-            console.log("Please fill out all your info.")
+            setError(true);
+            setErrorMsg('Please fill out your info');
         }
         
     }
      
     return (
-        <div className = "signup">
-            <h1>Create your closet account</h1>
+        <div className = "login">
+            <img src={logo} className="logo" alt="logo"/>
+            <h2>Create your closet</h2>
             <form onSubmit={handleSubmit}>
-                <label>
-                    <p>Username</p>
-                    <input type="text" className="signup-form" 
+                <section className='login-form'>
+                    
+                    <input type="text" className="login-input" 
                         value={username}
                         onChange={event => setUserName(event.target.value)}
                         placeholder="Enter your desired username" />
-                </label>
-                <label>
-                    <p>Password</p>
-                    <input type="password" className="signup-form"
+                </section>
+                <section className='login-form'>
+                    
+                    <input type="password" className="login-input"
                         value={password}
                         onChange={event => setPassword(event.target.value)}
                         placeholder="Enter your desired password" />
-                </label>
-                <div>
-                    <button type="submit">Create Account</button>
+                </section>
+                {error? <div className="error">{errorMsg}</div>: null}
+                <div className="login-btn">
+                    <button type="submit" className="signin-btn">Create Closet</button>
+                </div>
+                <div className='login-guest'>
+                    <h3>Or explore as <a href='/guest' className="login-guest-link">Guest→</a></h3>
                 </div>
             </form>
         </div>

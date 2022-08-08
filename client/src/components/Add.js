@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from 'react-select';
 import { SketchPicker } from 'react-color';
+import '../stylesheets/Add.css';
 
 const clothingOptions = [
     {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
@@ -22,32 +23,33 @@ function Add({ handleAdd }) {
             b: 0
         }
     );
+    const [error, setError] = useState(false);
 
     //Adds the clothing when the user finishes choosing the type of clothing and color.
     //Make sure the user picked the clothing type when the button is pressed.
     const handleSubmit = event => {
         event.preventDefault();
         if (clothingType == null) {
-            console.log("please choose the clothing type")
+            setError(true)
         } else {
             let type = clothingType.type;
             let lab = clothingType.label;
             let col = color;
             //Hanldes the error case where the color api finds wrong color scheme
             //if the color is completely black or white (0 or 255).
-            if (col.r + col.g + col.b == 0) {
+            /*if (col.r + col.g + col.b === 0) {
                 col = {
-                    r: 1,
-                    g: 1,
-                    b: 1
+                    r: 3,
+                    g: 3,
+                    b: 3
                 }
-            } else if (col.r == 255 && col.g == 255 && col.b == 255) {
+            } else if (col.r === 255 && col.g === 255 && col.b === 255) {
                 col = {
-                    r: 254,
-                    g: 254,
-                    b: 254
+                    r: 252,
+                    g: 252,
+                    b: 252
                 }
-            }
+            } */
             const clothing = {
                 type: type,
                 label: lab,
@@ -59,27 +61,28 @@ function Add({ handleAdd }) {
         }
     }
 
-    //Reset the state variables when the user clicks submit.
+    //Reset the state variables when user clicks submit.
     const resetState = () => {
         setClothingType(null);
         setColor({
             r: 0,
             g: 0,
             b: 0
-        })
+        });
+        setError(false);
     };
     
     return (
-        <div className="add">
+        <div className="add-tab">
             <form onSubmit={handleSubmit}>
                 <div>
                     <Select
                         className="clothingSelect"
-                        placeholder='Select Your Clothing'
+                        placeholder='Select Your Type Of Clothing'
                         onChange={opt => setClothingType({label: opt.label, type: opt.value})}
                         options={clothingOptions}
                     />
-                    <h3>Pick the color</h3>
+                    <h3>Pick Color</h3>
                     <SketchPicker
                         className="colorPicker"
                         color={color}
@@ -88,8 +91,9 @@ function Add({ handleAdd }) {
                     />
                     
                 </div>
+                {error? <div className="error">Please select your type of clothing</div>: null}
                 <div>
-                    <button type="submit" className="btn">Add</button>
+                    <button type="submit" className="add-btn">Add</button>
                 </div>
             </form>
 

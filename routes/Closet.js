@@ -40,6 +40,18 @@ class Closet {
         return data;
     }
 
+    //Return the clothing item that corresponds to id in the user's closet.
+    findClothing = async (username, id) => {
+        let data = null;
+        await this.getClosetData(username)
+        .then(res => data = res.data)
+        .catch(error => console.error(error))
+        let closet = data.closet;
+        let clothing = closet.find(item => id.equals(item._id));
+        
+        return clothing;
+    }
+
     //Return the Top 3 Outfits from each scheme: monochromatic, analogous, and complementary.
     findBestFits = async (closetData) => {
         const topsList = closetData.filter(clothing => clothing.type === "top");
@@ -72,18 +84,20 @@ class Closet {
                 bestAnalogs = await this.findBestAnalogs(shoesList, topsList, botsList);
                 bestComps = await this.findBestComps(shoesList, topsList, botsList);
             }
+            let bestMonosFits = bestMonos.map(comb => comb.clothings);
+            let bestAnalogsFits = bestAnalogs.map(comb => comb.clothings);
+            let bestCompsFits = bestComps.map(comb => comb.clothings);
             result = {
-                bestMonos: bestMonos,
-                bestAnalogs: bestAnalogs,
-                bestComps: bestComps
+                bestMonos: bestMonosFits,
+                bestAnalogs: bestAnalogsFits,
+                bestComps: bestCompsFits
             };
-            console.log(JSON.stringify(result));
             
+            return result;
        } else {
          return "not enough itmes"
        }
         
-        //console.log("find best fits from:"+closetData);
     }
 
     //Return the Top 3 monochromatic outfits with ids and scores
@@ -96,9 +110,9 @@ class Closet {
             await color.getMono(shortest[i])
             .then(res => matchingColors = res)
             .catch(error => console.error(error))
-            let scores = this.calculateScores(matchingColors, shortest[i]._id, itemsA, itemsB);
+            let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, false);
             
-            result.push(scores);
+            result.push(...scores);
         }
 
         //Sort the scores array in ascending order
@@ -108,7 +122,8 @@ class Closet {
 
         //Only return the top three scores.
         if (result.length > 3) {
-            topThree = result.slice(3);
+            topThree = result.slice(0, 3);
+            
             return topThree;
         } else {
             return result;
@@ -125,8 +140,8 @@ class Closet {
             await color.getAnalog(shortest[i])
             .then(res => matchingColors = res)
             .catch(error => console.error(error))
-            let scores = this.calculateScores(matchingColors, shortest[i]._id, itemsA, itemsB)
-            result.push(scores);
+            let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, false)
+            result.push(...scores);
         }
 
         //Sort the scores array in ascending order
@@ -136,7 +151,7 @@ class Closet {
 
         //Only return the top three scores.
         if (result.length > 3) {
-            topThree = result.slice(3);
+            topThree = result.slice(0, 3);
             return topThree;
         } else {
             return result;
@@ -153,8 +168,8 @@ class Closet {
             await color.getComp(shortest[i])
             .then(res => matchingColors = res)
             .catch(error => console.error(error))
-            let scores = this.calculateScores(matchingColors, shortest[i]._id, itemsA, itemsB)
-            result.push(scores);
+            let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, true)
+            result.push(...scores);
         }
 
         result.sort(function(a, b) {
@@ -163,14 +178,45 @@ class Closet {
 
         //Only return the top three scores.
         if (result.length > 3) {
-            topThree = result.slice(3);
+            topThree = result.slice(0, 3);
             return topThree;
         } else {
             return result;
         }
     }
 
-    //Return the name of the shortest list out of tops, bots, and shoes
+    //Calculates scores of an outfit
+    findScores = async (top, bot, shoes) => {
+        let color = new Color();
+        let matchingColors = [];
+        let result = {
+            mono: 0,
+            analog: 0,
+            comp: 0
+        };
+        let score = 0;
+        //Calculates score for monochromatic scheme
+        await color.getMono(top)
+        .then(res => matchingColors = res)
+        .catch(error => console.error(error))
+        score = this.matchingScore(matchingColors, bot.color, shoes.color);
+        result.mono = score;
+        //Calculates score for analogous scheme
+        await color.getAnalog(top)
+        .then(res => matchingColors = res)
+        .catch(error => console.error(error))
+        score = this.matchingScore(matchingColors, bot.color, shoes.color);
+        result.analog = score;
+        //Calculates score for complementary scheme
+        await color.getComp(top)
+        .then(res => matchingColors = res)
+        .catch(error => console.error(error))
+        score = this.matchingScoreComp(matchingColors, bot.color, shoes.color);
+        result.comp = score;
+        return result;
+    }
+
+    //Returns the name of the shortest list out of tops, bots, and shoes
     findShortest = (topsLen, botsLen, shoesLen) => {
         if (topsLen < botsLen && topsLen < shoesLen) {
             return "top"
@@ -181,17 +227,30 @@ class Closet {
         }
     }
 
-    //Return the calculated scores for all the combinations between an item's matching colors to lists of other items.
-    calculateScores = (mColors, id, itemsA, itemsB) => {
+    //Returns the calculated scores for all the combinations between an item's matching colors to lists of other items.
+    calculateScores = (mColors, item, itemsA, itemsB, comp) => {
         let result = [];
-        for (let i = 0; i < itemsA.length; i++) {
-            for (let j = 0; j < itemsB.length; j++) {
-                let score = this.matchingScore(mColors, itemsA[i].color, itemsB[j].color);
-                let evaluation = { 
-                    score : score,
-                    ids: [id, itemsA[i]._id, itemsB[j]._id]
+        if (comp) {
+            for (let i = 0; i < itemsA.length; i++) {
+                for (let j = 0; j < itemsB.length; j++) {
+                    let score = this.matchingScoreComp(mColors, itemsA[i].color, itemsB[j].color);
+                    let evaluation = { 
+                        score : score,
+                        clothings: [item, itemsA[i], itemsB[j]]
+                    }
+                    result.push(evaluation);
                 }
-                result.push(evaluation);
+            }
+        } else {
+            for (let i = 0; i < itemsA.length; i++) {
+                for (let j = 0; j < itemsB.length; j++) {
+                    let score = this.matchingScore(mColors, itemsA[i].color, itemsB[j].color);
+                    let evaluation = { 
+                        score : score,
+                        clothings: [item, itemsA[i], itemsB[j]]
+                    }
+                    result.push(evaluation);
+                }
             }
         }
         return result;
@@ -212,6 +271,42 @@ class Closet {
             let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
             if (tempB < scoreB) {
                 scoreB = tempB
+            }
+        }
+        return scoreA + scoreB;
+    }
+
+    matchingScoreComp = (mColors, colorA, colorB) => {
+        let scoreA = 1000;
+        let scoreB = 1000;
+
+        const contrast = Math.abs(colorB.r - colorA.r) + Math.abs(colorB.g - colorA.g) + Math.abs(colorB.b - colorA.b);
+        const blackWhiteA = Math.abs(colorA.r - colorA.g) < 10 && Math.abs(colorA.r - colorA.b) < 10 && Math.abs(colorA.g - colorA.b) < 10;
+        const blackWhiteB = Math.abs(colorB.r - colorB.g) < 10 && Math.abs(colorB.r - colorB.b) < 10 && Math.abs(colorB.g - colorB.b) < 10;
+        console.log(contrast, blackWhiteA, blackWhiteB);
+        if (contrast > 400 && blackWhiteA && blackWhiteB) {
+            scoreB = 0;
+            for (let i = 0; i < mColors.length; i++) {
+                let mCol = mColors[i];
+                let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
+                let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
+                let lowest = Math.min(tempA, tempB);
+                if (lowest < scoreA) {
+                    scoreA = lowest
+                }
+                console.log(scoreA);
+            }   
+        } else {
+            for (let i = 0; i < mColors.length; i++) {
+                let mCol = mColors[i];
+                let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
+                if (tempA < scoreA) {
+                    scoreA = tempA;
+                }
+                let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
+                if (tempB < scoreB) {
+                    scoreB = tempB
+                }
             }
         }
         return scoreA + scoreB;

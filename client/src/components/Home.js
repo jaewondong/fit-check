@@ -15,22 +15,15 @@ export default function Home() {
         if (loggedIn) {
             navigate('/closet');
         }
-    });
-
-    ;
-    
+     });
     
     
     return (
         <div className='home'>  
-            
-            <h1>Fit Check</h1>
-            <button onClick={() => {
-                navigate("/signup");
-            }}>Sign Up</button>
-            <button onClick={() => {
-                navigate("/login");
-            }}>Sign In</button>
+            <h1>Welcome to Fit Check!</h1>
+            <div className='about-content'>
+                <p>About Fit Check</p>
+            </div>
         </div>
     );
 }

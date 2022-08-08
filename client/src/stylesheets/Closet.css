@@ -1,3 +1,56 @@
-.closet-clothing {
-    display:flex
+
+.btn {
+    text-align: end;
+    padding: 15px 50px;
+    margin-bottom: 1rem;
+}
+
+.btn button {
+    display: inline-block;
+    margin-right: 1rem;
+    padding: 9px 25px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-size: 1.2rem;
+    color: white;
+    font-family: OpenSans, sans-serif;
+}
+
+.btn .add {
+    font-size: 1.4rem;
+    padding: 7px 18px;
+    background-color: rgba(187, 191, 195, 0.836)
+}
+
+.btn .add:hover {
+    background-color: rgba(47, 47, 55, 0.681);
+}
+
+.btn .cancel {
+    margin-bottom: 5px;
+    padding: 9px 20px;
+    background-color:rgb(137, 28, 57);
+}
+
+.btn .cancel:hover {
+    background-color: rgb(72, 6, 19);
+}
+
+.btn .rem {
+    padding: 10px 14px;
+    background-color: rgba(187, 191, 195, 0.836)
+}
+
+.btn .rem:hover {
+    background-color: rgba(47, 47, 55, 0.681);
+}
+
+.btn .add-page {
+    width: 20rem;
+    position: absolute;
+    z-index: 1;
+    z-index: 1;
+    right: 7rem;
 }

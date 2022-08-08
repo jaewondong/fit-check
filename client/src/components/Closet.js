@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Add from './Add';
 import Clothing from './Clothing';
@@ -10,8 +9,6 @@ function Closet() {
     const [closet, setCloset] = useState([]);
     const [add, setAdd] = useState(false);
     const [del, setDel] = useState(false);
-    
-    const navigate = useNavigate();
 
     //Returns the username of the user currently logged in.
     const getUsername = () => {
@@ -45,9 +42,12 @@ function Closet() {
     //Handles the add button change
     const showAdd = () => {
         setAdd(!add);
+        setDel(false);
     }
 
+    //Handles the remove button change
     const showDel = () => {
+        setAdd(false);
         setDel(!del);
     }
 
@@ -55,12 +55,10 @@ function Closet() {
     const addClothing = async (clothing) => {
         showAdd();
         let username = getUsername();
-        let data = null;
         await axios.post('/addClothing', { 
             username: username,
             clothing: clothing
         })
-        .then(res => data = res.data)
         .catch(error => console.error(error))
     }
 
@@ -68,24 +66,33 @@ function Closet() {
     const delClothing = async (clothing) => {
         showDel();
         let username = getUsername();
-        let data = null;
         await axios.post('/delClothing', { 
             username: username,
             clothing: clothing
         })
-        .then(res => data = res.data)
         .catch(error => console.error(error))
     }
     
-    //Log out the user and rediret to the home page.
-    const logout = () => {
-        localStorage.removeItem('user');
-        navigate('/', {replace : true});
-    }
     
     return (
-        <div className='closet' style={{backgroundColor: "rgb(205, 222, 231)"}}>
-            <h1>This is your closet.</h1>
+        <div className='closet'>
+            <h1>{getUsername()}'s Closet</h1>
+            <div className='btn'>
+                {add? 
+                    <div className="add-page">
+                        <button onClick={showAdd} className='cancel'>Cancel</button>
+                        <Add handleAdd={addClothing}/>
+                    </div>
+                    : 
+                    <button onClick={showAdd} className='add'>+</button>
+                    }
+                {del?
+                    <button onClick={showDel} className='cancel'>Cancel</button>
+                    :
+                    <button onClick={showDel} className='rem'>—</button>
+                }
+            </div>
+
             <div className='closet-clothing'> 
                 {closet.map(clothing => {
                     return (<Clothing 
@@ -98,20 +105,11 @@ function Closet() {
                     />)
                 })} 
             </div>
-            
-            {add? <div>
-                    <Add handleAdd={addClothing}/>
-                    <button onClick={showAdd} className='btn'>Cancel</button>
-                </div>
-             : <button onClick={showAdd} className='btn'>Add</button>}
-
-            {del? <button onClick={showDel} className='btn'>Cancel</button>
-            : <button onClick={showDel} className='btn'>Remove</button>}
-
-            <button onClick={logout} className="btn">Sign Out</button>
-            <Link to='/closet/bestFits'>Find Your Best Fits</Link>
+    
         </div>
     )
 }
 
 export default Closet;
+
+//<Link to='/closet/bestFits'>Find Your Best Fits</Link>
