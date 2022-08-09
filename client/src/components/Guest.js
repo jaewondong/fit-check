@@ -104,8 +104,6 @@ function Guest() {
           
     }
 
-
-
     return (
         <div className="guest">
             <h1 className="guest-text">Calculate Your Fit Score</h1>
@@ -113,12 +111,7 @@ function Guest() {
                 <form onSubmit={handleSubmit}>
                     <div className="add-slide">
                         <h3>Choose Your {value}</h3>
-                        <Select
-                            className="clothingSelectGuest"
-                            placeholder='Select Your Clothing'
-                            onChange={opt => setClothingType({label: opt.label, type: opt.value})}
-                            options={getOptions()}
-                        />
+                        
                         <h3>Pick Color</h3>
                         <SketchPicker
                             className="colorPickerGuest"
@@ -133,7 +126,6 @@ function Guest() {
                             <button type="submit" className="add-btnG">Add</button>
                         }
                     <div>
-                        
                         
                     </div>
                     </div>
@@ -159,3 +151,10 @@ function Guest() {
 }
 
 export default Guest;
+
+/* <Select
+                            className="clothingSelectGuest"
+                            placeholder='Select Your Clothing'
+                            onChange={opt => setClothingType({label: opt.label, type: opt.value})}
+                            options={getOptions()}
+                        />*/
