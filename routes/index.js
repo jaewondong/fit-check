@@ -10,11 +10,6 @@ router.get('/', (req, res) => {
     res.send('hello');
 })
 
-router.get('/login',  (req, res) => {
-    res.header("Content-Type", 'application/json')
-    res.send(JSON.stringify(req.body));
-})
-
 
 router.post('/login', async (req, res) => {
     let closet = new Closet();
