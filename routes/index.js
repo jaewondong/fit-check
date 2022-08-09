@@ -6,11 +6,6 @@ const Closet = require('./Closet');
 const bcrypt = require('bcrypt')
 
 
-router.get('/', (req, res) => {
-    res.send('hello');
-})
-
-
 router.post('/login', async (req, res) => {
     let closet = new Closet();
     const user = await closet.getClosetData(req.body.username);
