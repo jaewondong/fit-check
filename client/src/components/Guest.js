@@ -26,7 +26,7 @@ const clothingOptions = [{value: "Top", options: topOptions}, {value: "Bottom", 
 
 function Guest() {
     const [outfit, setOutfit] = useState([]);
-    const [clothingType, setClothingType] = useState();
+    const [clothingType, setClothingType] = useState("");
     const [color, setColor] = useState(
         {
             r: 0,
@@ -51,7 +51,7 @@ function Guest() {
 
     //Reset the state of clothingType and color when user clicks add.
     const resetState = () => {
-        setClothingType(null);
+        setClothingType("");
         setColor({
             r: 0,
             g: 0,
@@ -84,7 +84,7 @@ function Guest() {
         event.preventDefault();
         if (value === "Calculate") {
             return calculateScore();
-        } else if (clothingType == null) {
+        } else if (clothingType === "") {
             return setError(true);
         } 
 

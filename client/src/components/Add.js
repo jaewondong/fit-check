@@ -15,7 +15,7 @@ const clothingOptions = [
 
 function Add({ handleAdd }) {
     
-    const [clothingType, setClothingType] = useState();
+    const [clothingType, setClothingType] = useState("");
     const [color, setColor] = useState(
         {
             r: 0,
@@ -29,7 +29,7 @@ function Add({ handleAdd }) {
     //Make sure the user picked the clothing type when the button is pressed.
     const handleSubmit = event => {
         event.preventDefault();
-        if (clothingType == null) {
+        if (clothingType === "") {
             setError(true)
         } else {
             let type = clothingType.type;
@@ -63,7 +63,7 @@ function Add({ handleAdd }) {
 
     //Reset the state variables when user clicks submit.
     const resetState = () => {
-        setClothingType(null);
+        setClothingType("");
         setColor({
             r: 0,
             g: 0,
