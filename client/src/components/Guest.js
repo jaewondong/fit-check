@@ -6,23 +6,7 @@ import Clothing from "./Clothing";
 
 import '../stylesheets/Guest.css';
 
-const topOptions = [
-    {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
-    {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"}
-];
 
-const botOptions = [
-    {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
-    {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
-];
-
-const shoesOptions = [
-    {label: "Sneakers", value: "shoes"}, {label: "Boots", value: "shoes"}, 
-    {label: "Heels", value: "shoes"}
-];
-
-const clothingOptions = [{value: "Top", options: topOptions}, {value: "Bottom", options: botOptions},
-                         {value: "Shoes", options : shoesOptions}];
 
 function Guest() {
     const [outfit, setOutfit] = useState([]);
@@ -38,6 +22,24 @@ function Guest() {
     const [error, setError] = useState(false);
 
     const navigate = useNavigate();
+
+    const topOptions = [
+    {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
+    {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"}
+    ];
+
+    const botOptions = [
+        {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
+        {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
+    ];
+
+    const shoesOptions = [
+        {label: "Sneakers", value: "shoes"}, {label: "Boots", value: "shoes"}, 
+        {label: "Heels", value: "shoes"}
+    ];
+
+    const clothingOptions = [{value: "Top", options: topOptions}, {value: "Bottom", options: botOptions},
+                            {value: "Shoes", options : shoesOptions}];
 
     //Return appropriate clothing options based on the value in the state.
     const getOptions = () => {

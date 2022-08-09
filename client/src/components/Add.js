@@ -3,14 +3,7 @@ import Select from 'react-select';
 import { SketchPicker } from 'react-color';
 import '../stylesheets/Add.css';
 
-const clothingOptions = [
-    {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
-    {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"},  
-    {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
-    {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
-     {label: "Sneakers", value: "shoes"},
-    {label: "Boots", value: "shoes"}, {label: "Heels", value: "shoes"}
-];
+
 
 
 function Add({ handleAdd }) {
@@ -24,6 +17,15 @@ function Add({ handleAdd }) {
         }
     );
     const [error, setError] = useState(false);
+
+    const clothingOptions = [
+    {label: "T-Shirts", value: "top"}, {label: "Jacket", value: "top"},
+    {label: "Hoodie", value: "top"}, {label: "Shirts", value: "top"},  
+    {label: "Pants", value: "bot"}, {label: "Wide Pants", value: "bot"},
+    {label: "Shorts", value: "bot"}, {label: "Skirt", value: "bot"},
+     {label: "Sneakers", value: "shoes"},
+    {label: "Boots", value: "shoes"}, {label: "Heels", value: "shoes"}
+    ];
 
     //Adds the clothing when the user finishes choosing the type of clothing and color.
     //Make sure the user picked the clothing type when the button is pressed.

@@ -18,7 +18,6 @@ function Closet() {
 
     //Get the user's closet from the backend server
     const getCloset = async username => {
-        console.log("username:" + username);
         let data = null;
         await axios.post('/closet', { 
                 username: username
