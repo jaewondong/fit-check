@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedRouteGuest from './components/ProtectedRouteGuest';
 import Guest from './components/Guest';
 import Score from './components/Score';
+import Footer from './components/Footer';
 
 import './App.css';
 
@@ -45,6 +46,7 @@ function App() {
                     } />
                     <Route path="*" element={<Navigate to="/" replace />} />
                  </Routes>
+                  <Footer/>
                 </BrowserRouter>     
         </div>
     )

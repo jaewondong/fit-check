@@ -1,9 +1,23 @@
 
 @font-face {
   font-family: OpenSans;
-  font-style: normal;
+  font-style: Medium;
   font-weight: 450;
   src: url("./assets/fonts/OpenSans-VariableFont.ttf") format('truetype')
+}
+
+@font-face {
+  font-family: Poppins;
+  font-style: Black;
+  font-weight: 900;
+  src: url("./assets/fonts/Poppins-Black.ttf")
+}
+
+@font-face {
+  font-family: PoppinsItalic;
+  font-style: Medium;
+  font-weight: 500;
+  src: url("./assets/fonts/Poppins-Black.ttf")
 }
 
 body {
@@ -16,7 +30,7 @@ body {
 .App {
   text-align: center;
   font-family: OpenSans, sans-serif;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .App-logo {
@@ -24,3 +38,52 @@ body {
   pointer-events: none;
 }
 
+h1 {
+  font-family: PoppinsItalic, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 150;
+  white-space: pre-line;
+  color: rgb(10, 55, 72);
+}
+
+h2 {
+  font-family: PoppinsItalic, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 150;
+    white-space: pre-line;
+    color: rgb(10, 55, 72);
+}
+
+h3 {
+  font-family: PoppinsItalic, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 150;
+  white-space: pre-line;
+  color: rgb(10, 55, 72);
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(95, 95, 95);
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: white
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  border-bottom: solid 1px;
+}
+
+.footer a:hover{
+  color: rgba(78, 118, 182, 0.951);
+}

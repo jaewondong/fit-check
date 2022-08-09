@@ -106,7 +106,7 @@ function Guest() {
 
     return (
         <div className="guest">
-            <h2 className="guest-text">Calculate Fit Score Based On Color Theory</h2>
+            <h1 className="guest-text">Calculate Your Fit Score</h1>
             <div className="guest-content">
                 <form onSubmit={handleSubmit}>
                     <div className="add-slide">

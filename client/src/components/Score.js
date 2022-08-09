@@ -55,7 +55,7 @@ function Score() {
 
     return (
         <div className="score-page">
-            <div className='closet-clothing'> 
+            <div className='outfit'> 
                 {getOutfit().map(clothing => {
                     return (<Clothing 
                         key={generateKey(clothing, clothing.label)}
@@ -64,20 +64,22 @@ function Score() {
                         color={clothing.color}
                         showDelete={false}
                     />)
-                })} 
+                })}
             </div>
-            <p>
+            <h2>
                 Monochromatic score: {scores.mono}
-            </p>
-            <p>
+            </h2>
+            <h2>
                 Analogous score: {scores.analog}
-            </p>
-            <p>
+            </h2>
+            <h2>
                 Complementary score: {scores.comp}
-            </p>
+            </h2>
 
         </div>
     )
 }
 
 export default Score;
+
+/*  */

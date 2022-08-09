@@ -7,7 +7,8 @@
 }
 
 header {
-    font-family: OpenSans, sans-serif;
+    font-family: PoppinItalic, sans-serif;
+    font-weight: 500;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -30,7 +31,7 @@ header {
 }
 
 .nav__items li a {
-    color: black;
+    color: rgb(10, 55, 72);
     transition: all 0.3s ease 0s;
     font-size: 1.2rem;
     text-decoration: none;

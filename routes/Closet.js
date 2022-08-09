@@ -283,7 +283,6 @@ class Closet {
         const contrast = Math.abs(colorB.r - colorA.r) + Math.abs(colorB.g - colorA.g) + Math.abs(colorB.b - colorA.b);
         const blackWhiteA = Math.abs(colorA.r - colorA.g) < 10 && Math.abs(colorA.r - colorA.b) < 10 && Math.abs(colorA.g - colorA.b) < 10;
         const blackWhiteB = Math.abs(colorB.r - colorB.g) < 10 && Math.abs(colorB.r - colorB.b) < 10 && Math.abs(colorB.g - colorB.b) < 10;
-        console.log(contrast, blackWhiteA, blackWhiteB);
         if (contrast > 400 && blackWhiteA && blackWhiteB) {
             scoreB = 0;
             for (let i = 0; i < mColors.length; i++) {
@@ -294,7 +293,6 @@ class Closet {
                 if (lowest < scoreA) {
                     scoreA = lowest
                 }
-                console.log(scoreA);
             }   
         } else {
             for (let i = 0; i < mColors.length; i++) {

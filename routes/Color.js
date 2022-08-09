@@ -88,7 +88,6 @@ class Color {
             }
         }
         const matchingColors = [firstMatchColor, secMatchColor];
-        console.log(matchingColors);
         return matchingColors;
     }
 
