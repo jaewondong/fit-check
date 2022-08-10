@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import Select from 'react-select';
 import { SketchPicker } from 'react-color';
 import Clothing from "./Clothing";
+import Dropdown from "./Dropdown";
 
 import '../stylesheets/Guest.css';
 
-
-
 function Guest() {
     const [outfit, setOutfit] = useState([]);
-    const [clothingType, setClothingType] = useState("");
+    const [clothingType, setClothingType] = useState({
+        label: "",
+        type: ""
+    });
     const [color, setColor] = useState(
         {
             r: 0,
@@ -43,7 +44,11 @@ function Guest() {
 
     //Return appropriate clothing options based on the value in the state.
     const getOptions = () => {
-        return clothingOptions.filter(options => options.value === value);
+        const options = clothingOptions.filter(options => options.value === value);
+        if (options[0] == null) {
+            return [];
+        }
+        return options[0].options;
     }
 
     //Generates a unique key for each clothing.
@@ -53,7 +58,10 @@ function Guest() {
 
     //Reset the state of clothingType and color when user clicks add.
     const resetState = () => {
-        setClothingType("");
+        setClothingType({
+        label: "",
+        type: ""
+        });
         setColor({
             r: 0,
             g: 0,
@@ -74,6 +82,11 @@ function Guest() {
         }
     }
 
+    //Handles changes in the dropdown bar
+    const handleChange = (opt) => {
+        setClothingType({label: opt.label, type: opt.value});
+    };
+
     //Calculates Score
     const calculateScore = () => {
         localStorage.setItem('outfit', JSON.stringify(outfit));
@@ -86,7 +99,7 @@ function Guest() {
         event.preventDefault();
         if (value === "Calculate") {
             return calculateScore();
-        } else if (clothingType === "") {
+        } else if (clothingType.label === "") {
             return setError(true);
         } 
 
@@ -103,6 +116,8 @@ function Guest() {
         resetState();
           
     }
+    
+    
 
     return (
         <div className="guest">
@@ -110,8 +125,16 @@ function Guest() {
             <div className="guest-content">
                 <form onSubmit={handleSubmit}>
                     <div className="add-slide">
-                        <h3>Choose Your {value}</h3>
-                        
+                        {value === "Calculate"? 
+                           <h3>Calculate</h3>
+                            :
+                            <h3>Choose Your {value}</h3>
+                        }
+                        <Dropdown
+                            placeholder='Select Your Clothing'
+                            onChange={handleChange}
+                            options={getOptions()}
+                        />
                         <h3>Pick Color</h3>
                         <SketchPicker
                             className="colorPickerGuest"
@@ -151,10 +174,3 @@ function Guest() {
 }
 
 export default Guest;
-
-/* <Select
-                            className="clothingSelectGuest"
-                            placeholder='Select Your Clothing'
-                            onChange={opt => setClothingType({label: opt.label, type: opt.value})}
-                            options={getOptions()}
-                        />*/

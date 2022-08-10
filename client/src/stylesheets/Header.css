@@ -78,3 +78,31 @@ header {
 .signup-btn:hover {
     background-color: rgba(109, 13, 26, 0.982)
 }
+
+.contact {
+    display: block;
+    justify-content: center;
+}
+
+.contact_social-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.contact-social-links a {
+    text-decoration: none;
+}
+
+.contact_social-logo {
+    height: 2.5rem;
+    margin: 10px;
+}
+
+@media(max-width: 500px) {
+    .contact {
+        padding: var(--gutter-medium) 0;
+    }
+}

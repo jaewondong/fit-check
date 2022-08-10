@@ -78,12 +78,12 @@ h3 {
   color: white
 }
 
-.footer a {
+.footer .email {
   color: white;
   text-decoration: none;
   border-bottom: solid 1px;
 }
 
-.footer a:hover{
+.footer .email:hover{
   color: rgba(78, 118, 182, 0.951);
 }

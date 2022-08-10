@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Select from 'react-select';
 import { SketchPicker } from 'react-color';
+import Dropdown from "./Dropdown";
 import '../stylesheets/Add.css';
 
 
@@ -26,6 +26,22 @@ function Add({ handleAdd }) {
      {label: "Sneakers", value: "shoes"},
     {label: "Boots", value: "shoes"}, {label: "Heels", value: "shoes"}
     ];
+
+    //Handles changes in the dropdown bar
+    const handleChange = (opt) => {
+        setClothingType({label: opt.label, type: opt.value});
+    };
+
+    //Reset the state variables when user clicks submit.
+    const resetState = () => {
+        setClothingType("");
+        setColor({
+            r: 0,
+            g: 0,
+            b: 0
+        });
+        setError(false);
+    };
 
     //Adds the clothing when the user finishes choosing the type of clothing and color.
     //Make sure the user picked the clothing type when the button is pressed.
@@ -63,25 +79,15 @@ function Add({ handleAdd }) {
         }
     }
 
-    //Reset the state variables when user clicks submit.
-    const resetState = () => {
-        setClothingType("");
-        setColor({
-            r: 0,
-            g: 0,
-            b: 0
-        });
-        setError(false);
-    };
     
     return (
         <div className="add-tab">
             <form onSubmit={handleSubmit}>
                 <div>
-                    <Select
-                        className="clothingSelect"
+                    <Dropdown
+                        
                         placeholder='Select Your Type Of Clothing'
-                        onChange={opt => setClothingType({label: opt.label, type: opt.value})}
+                        onChange={handleChange}
                         options={clothingOptions}
                     />
                     <h3>Pick Color</h3>

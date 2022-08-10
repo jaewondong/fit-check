@@ -1,0 +1,54 @@
+.dropdown {
+    display: flex;
+    min-height: 38px;
+    flex-wrap: wrap;
+}
+
+.dd-header {
+    display: block;
+    cursor: pointer;
+    width: 100%;
+    background-color: white;
+    border: solid 1px silver;
+    border-radius: 8px;
+}
+
+.dd-header p {
+    text-align: center;
+    font-weight: 500;
+}
+
+.dd-list {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    right:0;
+    top:0;
+    z-index:5;
+}
+
+.dd-list li {
+    list-style-type: none;
+}
+
+.dd-list li button {
+    display: flex;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    padding: 0;
+    border-top:solid 1px black;
+    border-radius: 0;
+    margin:0;
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+}
+
+.dd-list li button:hover {
+    cursor: pointer;
+    background-color: #ccc;
+}
+    
+
