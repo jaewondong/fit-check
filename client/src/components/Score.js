@@ -75,6 +75,11 @@ function Score() {
             <h2>
                 Complementary score: {scores.comp}
             </h2>
+            <p className="about-text" style={{"text-align": "center"}}>
+                The maximum score possible is 100, if you got that, congratulations! You should wear that outfit in the future.
+                {"\n"}
+                Lower score just means the colors don't match the color scheme as much, so don't be disappointed! After all, fashion is subjective.
+            </p>
 
         </div>
     )

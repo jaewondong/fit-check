@@ -31,7 +31,6 @@ function Dropdown ({options, placeholder, onChange}) {
                 setItems(options);
             }
         }
-        console.log(options);
         setData();
     }, [options]);
 
