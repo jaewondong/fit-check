@@ -26,3 +26,13 @@
 .add-btn:hover {
     background-color: rgb(53, 53, 53);
 }
+
+/*--- Mobile Friendly ---*/
+
+@media screen and (max-width:500px) {
+    .add-tab {
+        margin-left: 40vw;
+        width: fit-content;
+        
+    }
+}

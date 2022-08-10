@@ -43,3 +43,16 @@
     justify-content: center;
     width: 15rem;
 }
+
+@media screen and (max-width:500px) {
+    .add-slide {
+        margin:auto;
+    }
+    .guest-content {
+        display:block;
+    }
+    .closet-clothing-guest .clothingItem{
+        display: flex;
+        justify-content:center;
+    }
+}

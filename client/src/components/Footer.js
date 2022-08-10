@@ -13,7 +13,7 @@ function Footer() {
                 <a className="email" href="mailto:jaewond03@berkeley.edu"> Jaewon Dong </a>
             </p>
            <div className="contact">
-                <p>Contact me on </p>
+                <p>Contact</p>
                 <ul className="contact_social-links">
                     <li className="contact_social-link-item">
                         <a href="https://www.linkedin.com/in/jaewondong/" target="_blank" rel="noreferrer" title="Link to Linkedin Profile">

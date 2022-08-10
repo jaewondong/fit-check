@@ -92,7 +92,7 @@ export default function Home() {
                 <div className='row'>
                     <h3 className="content-title">Color Schemes</h3>
                     
-                    <div className='about-item'>
+                    <div className='about-item opp'>
                         <div className='about-text'>
                             <h3>Monochromatic</h3>
                             <p>
@@ -126,7 +126,7 @@ export default function Home() {
                             </p>
                         </div>
                     </div>
-                    <div className='about-item'>
+                    <div className='about-item opp'>
                         <div className='about-text'>
                             <h3>Complementary</h3>
                             <p>
@@ -143,6 +143,17 @@ export default function Home() {
                             <img src={compOutfit} alt="compOutfit" />
                         </div>
                     </div>
+                </div>
+                <div className="row">
+                    <h3 className="content-title">Ready to Explore?</h3>
+                    <div className='about-item'>
+                        <div className='about-text'>
+                            <h3 style={{"text-align": "center"}} className="last-text">Fit check uses these color combination rules to find the best outfits from your closet! {"\n"}
+                            If you are ready to explore, please <a href="/signup">signup</a> or continue as <a href="/guest">guest</a>. </h3>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

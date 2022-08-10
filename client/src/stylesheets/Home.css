@@ -9,7 +9,7 @@
 }
 
 .welcome {
-    width:max-content;
+    width: max-content;
 }
 
 .welcome .headline {
@@ -64,10 +64,78 @@
     margin: 3rem 5rem;
 }
 
+.about-text a {
+    text-decoration: none;
+    color: rgb(10, 55, 72);
+    border-bottom: solid;
+}
+
+.about-text a:hover {
+    color: rgb(14, 134, 178);
+}
+
+
+
 .about-img {
     display: flex;
     width: 120%;
     max-width: fit-content;
     justify-content: center;
     margin: 0 3rem;
+}
+
+
+/*--- Mobile Friendly ---*/
+@media screen and (max-width:767px) {
+    .about-item {
+        display: block;
+        align-items: flex-end;
+        width:auto;
+    }
+
+    .about-item h3, .opp h3 {
+        font-size: 1.3rem;
+    }
+    
+
+    .about-text {
+        margin: 30px 30px;
+        text-align: center;
+    }
+    
+    img {
+        max-width: 75vw;
+    }
+
+    .about-img {
+        margin: auto;
+    }
+    .welcome {
+        max-width:fit-content;
+    }
+    .welcome .headline {
+        font-size: 3rem;
+        margin: 20px 20px;
+    }
+    .welcome .headline-desc {
+        margin: 10px 10px;
+    }
+    .content-title {
+        font-size: 1.8rem;
+    }
+    .opp {
+        display:flex;
+        flex-direction: column-reverse;
+        max-width: fit-content;
+        justify-content: center;
+        
+    }
+
+    .opp .about-text {
+        text-align: center;
+    }
+
+    .about-text .last-text {
+        font-size: 1.1rem;
+    }
 }

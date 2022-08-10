@@ -19,6 +19,7 @@ header {
 
 .logo {
     cursor: pointer;
+    max-width: 50vw;
 }
 
 .nav__items {
@@ -102,7 +103,53 @@ header {
 }
 
 @media(max-width: 500px) {
-    .contact {
-        padding: var(--gutter-medium) 0;
+
+    .logo {
+        margin-top: 25px;
+    }
+
+    header {
+        display:block;
+    }
+    .nav__items {
+        padding: 0;
+        margin-top: 30px;
+        margin-bottom: 5px;
+    }
+
+    .nav__items li {
+        padding-right: 20px;
+        padding-left: 0;
+    }
+
+    .nav__items li a {
+        color: rgb(10, 55, 72);
+        transition: all 0.3s ease 0s;
+        font-size: 1rem;
+        text-decoration: none;
+    }
+
+    .auth-btns {
+        position:absolute;
+        right: 0;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .auth-btns a {
+        padding: 0;
+    }
+
+    .auth-btns a button {
+        padding: 5px 17px;
+        border: none;
+        border-radius: 50px;
+        transition: all 0.3s ease 0s;
+        font-size: 0.8rem;
+        margin: 5px;
+        
     }
 }
+

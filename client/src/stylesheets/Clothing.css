@@ -3,6 +3,7 @@
     display: inline-block;
     border-radius: 7px;
     background-color: rgba(244, 241, 236, 0.79);
+    object-fit: contain;
 }
 
 
@@ -20,8 +21,20 @@
     background-color: rgb(94, 19, 39);
 }
 
-svg {
+.clothingItem svg {
     position: relative;
     margin-top: 20px;
     margin-bottom: 20px;
+    max-width: 35vw;
+    object-fit: contain;
 }
+
+@media screen and (max-width: 500px) {
+    .clothingItem .delete {
+        font-size: 0.8rem;
+        right: -17vw;
+        top: -55vw;
+        
+    }
+}
+

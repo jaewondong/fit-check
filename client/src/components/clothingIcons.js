@@ -547,7 +547,7 @@ export const Hoodie = ({fill}) => {
 export const Shirts = ({fill}) => {
     return (
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-            width={width} height={height} viewBox="50 0 1000.000000 1280.000000"
+            width={width} height={height} viewBox="0 0 1200.000000 1280.000000"
             preserveAspectRatio="xMidYMid meet">
             <metadata>
             Created by potrace 1.15, written by Peter Selinger 2001-2017

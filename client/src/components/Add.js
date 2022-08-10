@@ -4,8 +4,6 @@ import Dropdown from "./Dropdown";
 import '../stylesheets/Add.css';
 
 
-
-
 function Add({ handleAdd }) {
     
     const [clothingType, setClothingType] = useState("");
