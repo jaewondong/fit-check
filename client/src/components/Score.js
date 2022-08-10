@@ -25,13 +25,13 @@ function Score() {
     const computeScores = (scores) => {
         let scoresList = scores;
         for (let i = 0; i < scoresList.length; i++) {
-            if (scoresList[i] < 50) {
+            if (scoresList[i] < 100) {
                 scoresList[i] = 100;
-            } else if (scoresList[i] > 550) {
+            } else if (scoresList[i] > 800) {
                 scoresList[i] = 0;
             } else {
                 let sc = scoresList[i];
-                scoresList[i] = Math.floor((500 - sc) / 5);
+                scoresList[i] = Math.floor((800 - sc) / 7);
             }
         }
         setScores({
@@ -86,5 +86,3 @@ function Score() {
 }
 
 export default Score;
-
-/*  */
