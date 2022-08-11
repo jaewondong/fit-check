@@ -18,7 +18,7 @@ so I built Fit Check, where people can store their clothing item into their clos
 - User authentication
 - Closet management
 - Adding and deleting clothing items in Closet
-- Using the Color API to calculate the most visually pleasing outfits from the user's Closet based on color theory
+- Using the Color API and my own algorithm to calculate the most visually pleasing outfits from the user's Closet based on color theory
 - Categorizing the best outfits into three color schemes: monochromatic, analogous, and complementary
 - Computing fit score for outfit picked by the user on the color schemes
 
