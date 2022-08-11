@@ -28,7 +28,7 @@ so I built Fit Check, where people can store their clothing item into their clos
 ![Closet Demo](https://github.com/jaewondong/fit-check/blob/main/demo/closetDemo.gif)
 
 ### Guest Demo
-![Guest Demo](https://github.com/jaewondong/fit-check/blob/main/demo/guestDemo.gif)
+![Guest Demo](https://github.com/jaewondong/fit-check/blob/main/demo/guestDemo2.gif)
 
 ## Acknowledgements
  - [The Color API](https://github.com/andjosh/thecolorapi)
