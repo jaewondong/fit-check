@@ -6,12 +6,12 @@ find the most aesthetically pleasing outfits from their closet based on color th
 ## Website Link: https://fitcheck-jd.herokuapp.com/
 
 ## Inspiration
-As a college guy, I wanted to dress nice, but it was a bit time consuming for me to pick an outfit every morning. 
+As a guy in college, I wanted to dress nice, but it was a bit time consuming for me to pick an outfit every morning. 
 I wished there was a website that can tell me the best possible outfits from my closet, and I knew a lot of my friends have experienced the same struggles before.
 
 After learning about color theory, I was amazed by how designers use this combination of scientific and artistic approach to create visually pleasing outfits.
 I found it so cool that we can use scientific principles to discover artistic values, 
-so I built Fit Check, where people can store their clothing item into their closet account, find the most visually pleasing outfits based on color theory, and calculate fit score for any outfit.
+so I built Fit Check, where people can store their clothing item into their closet account, find the most aesthetically pleasing outfits based on color theory, and calculate fit score for any outfit.
 
 ## Features
 - Fundamentals of color theory
