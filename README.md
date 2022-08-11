@@ -14,7 +14,6 @@ I found it so cool that we can use scientific principles to discover artistic va
 so I built Fit Check, where people can store their clothing item into their closet account, find the most visually pleasing outfits based on color theory, and calculate fit score for any outfit.
 
 ## Features
-
 - Fundamentals of color theory
 - User authentication
 - Closet management
@@ -25,9 +24,13 @@ so I built Fit Check, where people can store their clothing item into their clos
 
 ## Demo
 
+### Closet Demo
+![Closet Demo](https://github.com/jaewondong/fit-check/blob/main/demo/closetDemo.gif)
+
+### Guest Demo
+![Guest Demo](https://github.com/jaewondong/fit-check/blob/main/demo/guestDemo.gif)
 
 ## Acknowledgements
-
  - [The Color API](https://github.com/andjosh/thecolorapi)
  - [Color Theory-Canvas](https://www.canva.com/colors/color-wheel/)
 
