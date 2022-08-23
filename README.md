@@ -30,6 +30,13 @@ so I built Fit Check, where people can store their clothing item into their clos
 ### Guest Demo
 ![Guest Demo](https://github.com/jaewondong/fit-check/blob/main/demo/guestDemo2.gif)
 
+## Future
+After I finished building the project, I realized that people with color blindness could use this technology to sort their closets and pick outfits.
+We all like dressing nice, so I believe with some modifications of features
+this website can help people with vision disability pick nice outfits.
+Hence, I plan on adding a camera feature where users can take a picture of the clothing, and store it in the closet account. My goal is to design an 
+algorithm that can identify the type of clothing and its color, so that people with vision disability can use it freely anywhere without anyone's help.
+
 ## Acknowledgements
  - [The Color API](https://github.com/andjosh/thecolorapi)
  - [Color Theory-Canvas](https://www.canva.com/colors/color-wheel/)
