@@ -53,9 +53,3 @@ function App() {
 }
 
 export default App;
-
-/* <Route path="/closet" element={
-                      <ProtectedRoute>
-                        <Closet />
-                      </ProtectedRoute>
-                    } />*/
