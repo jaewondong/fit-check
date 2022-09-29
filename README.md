@@ -6,7 +6,7 @@ find the most aesthetically pleasing outfits from their closet based on color th
 ## Website Link: https://fitcheck-jd.herokuapp.com/
 
 ## Inspiration
-As a guy in college, I wanted to dress nice, but it was a bit time consuming for me to pick an outfit every morning. 
+As someone in college, I wanted to dress nice, but it was a bit time consuming for me to pick an outfit every morning. 
 I wished there was a website that can tell me the best possible outfits from my closet, and I knew a lot of my friends have experienced the same struggles before.
 
 After learning about color theory, I was amazed by how designers use this combination of scientific and artistic approach to create visually pleasing outfits.
