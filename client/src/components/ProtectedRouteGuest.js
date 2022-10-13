@@ -17,7 +17,6 @@ export const useAuth = () => {
 const ProtectedRouteGuest = ({ children }) => {
 
   const auth = useAuth();
-  //const navigate = useNavigate();
 
   //Checks if the user is autenthicated.
   return auth? children : <Navigate to="/" />

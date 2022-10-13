@@ -39,7 +39,7 @@ algorithm that can identify the type of clothing and its color, so that people w
 
 ## Acknowledgements
  - [The Color API](https://github.com/andjosh/thecolorapi)
- - [Color Theory-Canvas](https://www.canva.com/colors/color-wheel/)
+ - [Color Theory-Canva](https://www.canva.com/colors/color-wheel/)
 
 ## Contact
 

@@ -160,7 +160,3 @@ export default function Home() {
     );
 }
 
-/*<button onClick={() => {
-                navigate("/signup");
-            }}>Sign Up</button> */
-
