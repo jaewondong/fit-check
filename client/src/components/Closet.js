@@ -18,24 +18,25 @@ function Closet() {
 
     //Get the user's closet from the backend server
     const getCloset = async username => {
-        let data = null;
-        await axios.post('/closet', { 
+        let res = await axios.post('/closet', { 
                 username: username
-             })
-        .then(res => data = res.data)
-        .catch(error => console.error(error))
-        return data;
+        })
+        // axios.post('/closet', { 
+        //         username: username
+        //      })
+        // .then(res => data = res.data)
+        return res.data;
     }
 
     //Updates the closet everytime the user enters the website or add an item
     useEffect( () => {
         const username = getUsername();
         const getData = async () => {
-            const data = await getCloset(username);
+            let data = await getCloset(username)
             setCloset(data);
         };
         getData()
-        .catch(error => console.error(error));
+        console.log('run!')
     }, [add, del] );
     
     //Handles the add button change
@@ -51,10 +52,10 @@ function Closet() {
     }
 
     //Called in the Add component when the user wants to add a clothing to the closet.
-    const addClothing = async (clothing) => {
+    const addClothing = (clothing) => {
         showAdd();
         let username = getUsername();
-        await axios.post('/addClothing', { 
+        axios.post('/addClothing', { 
             username: username,
             clothing: clothing
         })
@@ -62,10 +63,10 @@ function Closet() {
     }
 
     //Called when the user clicks the delete button
-    const delClothing = async (clothing) => {
+    const delClothing = (clothing) => {
         showDel();
         let username = getUsername();
-        await axios.post('/delClothing', { 
+        axios.post('/delClothing', { 
             username: username,
             clothing: clothing
         })

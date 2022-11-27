@@ -58,4 +58,4 @@ mongoose.connect(process.env.DB, {
     useUnifiedTopology: true
 }).then(() => console.log("MongoDB Connected")).catch((e) => console.error(e));
 
-app.listen(port, () => console.log(`Listening on port ${prt}`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
