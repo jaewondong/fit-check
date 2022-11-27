@@ -10,7 +10,7 @@
     "client": "cd client && npm run start",
     "dev": "concurrently \"npm run devStart\" \"npm run client\"",
     "heroku-postbuild": "cd client/src && npm install && npm run build",
-    "render-postbuild": "cd client/src && npm install && npm run build"
+    "render-postbuild": "node server.js && cd client/src && npm install && npm run build"
   },
   "keywords": [],
   "author": "Jaewon Dong",
