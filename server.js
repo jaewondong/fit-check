@@ -14,10 +14,11 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cors());
+
 app.use('/', routes);
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
-app.use(express.static('public')); //?
+app.use(express.static('public'));
 
 // If in production, then use static frontend build files.
 if (process.env.NODE_ENV === 'production') {
