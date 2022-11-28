@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://fitcheck.vercel.app",
+  "homepage": "https://fit-check.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
