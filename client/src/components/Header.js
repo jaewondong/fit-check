@@ -3,23 +3,35 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo1.png';
 import '../stylesheets/Header.css';
 
-function Header({ log }) {
+function getLoginData() {
+    let user = localStorage.getItem('user')
+    if (user) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function Header() {
 
     const navigate = useNavigate();
 
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [loggedIn, setLoggedIn] = useState(getLoginData());
 
     useEffect( () => {
         const checkLoggedIn = () => {
-            const user = localStorage.getItem('user');
-            if (user) {
-                setLoggedIn(true);
-            } else {
-                setLoggedIn(false);
-            }
+            setLoggedIn(getLoginData())
+            // const user = localStorage.getItem('user');
+            // if (user) {
+            //     setLoggedIn(true);
+            // } else {
+            //     setLoggedIn(false);
+            // }
         }
-       checkLoggedIn();
-    }, [localStorage.getItem('user')]);
+        window.addEventListener('storage', checkLoggedIn)
+        return () => window.removeEventListener('storage', checkLoggedIn);
+       //checkLoggedIn();
+    }, [localStorage.getItem('storage')]);
 
     //Log out the user and rediret to the home page.
     const logout = () => {

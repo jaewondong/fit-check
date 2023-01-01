@@ -148,7 +148,7 @@ export default function Home() {
                     <h3 className="content-title">Ready to Explore?</h3>
                     <div className='about-item'>
                         <div className='about-text'>
-                            <h3 style={{"text-align": "center"}} className="last-text">Fit check uses these color combination rules to find the best outfits from your closet! {"\n"}
+                            <h3 style={{"textAlign": "center"}} className="last-text">Fit check uses these color combination rules to find the best outfits from your closet! {"\n"}
                             If you are ready to explore, please <a href="/signup">signup</a> or continue as <a href="/guest">guest</a>. </h3>
 
                         </div>
