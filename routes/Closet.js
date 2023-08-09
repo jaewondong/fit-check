@@ -13,41 +13,31 @@ class Closet {
 
     //Adds a clothing item to the user's closet in mongoDB and returns the previous closet.
     addClothingData = async (username, clothingData) => {
-        let data = null;
-        await USER.findOneAndUpdate({
+        const res = await USER.findOneAndUpdate({
             username: username
         }, {
             $push: { closet: clothingData }
         })
-        .then(response => data = response.closet)
-        .catch(error => console.error(error))
-        return data;
+        return res.closet;
 
         
     }
 
     //Deletes a clothing item from the user's closet in mongoDB and returns the previous closet.
     delClothingData = async (username, clothingData) => {
-        let data = null;
-        //console.log(clothingData);
-        await USER.findOneAndUpdate({
+        const res = await USER.findOneAndUpdate({
             username: username
         }, {
             $pull: { closet: clothingData }
         })
-        .then(response => data = response.closet)
-        .catch(error => console.error(error))
-        return data;
+        return res.closet;
     }
 
     //Return the clothing item that corresponds to id in the user's closet.
     findClothing = async (username, id) => {
-        let data = null;
-        await this.getClosetData(username)
-        .then(res => data = res.data)
-        .catch(error => console.error(error))
-        let closet = data.closet;
-        let clothing = closet.find(item => id.equals(item._id));
+        const res = await this.getClosetData(username);
+        const closet = res.data.closet;
+        const clothing = closet.find(item => id.equals(item._id));
         
         return clothing;
     }
@@ -84,6 +74,7 @@ class Closet {
                 bestAnalogs = await this.findBestAnalogs(shoesList, topsList, botsList);
                 bestComps = await this.findBestComps(shoesList, topsList, botsList);
             }
+            // console.log(bestMonos, bestAnalogs, bestComps)
             let bestMonosFits = bestMonos.map(comb => comb.clothings);
             let bestAnalogsFits = bestAnalogs.map(comb => comb.clothings);
             let bestCompsFits = bestComps.map(comb => comb.clothings);
@@ -103,22 +94,18 @@ class Closet {
     //Return the Top 3 monochromatic outfits with ids and scores
     findBestMonos = async (shortest, itemsA, itemsB) => {
         let color = new Color();
-        let matchingColors = [];
         let result = [];
         let topThree = [];
+        
         for (let i = 0; i < shortest.length; i++) {
-            await color.getMono(shortest[i])
-            .then(res => matchingColors = res)
-            .catch(error => console.error(error))
+            const matchingColors = await color.getMono(shortest[i])
             let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, false);
             
             result.push(...scores);
         }
 
-        //Sort the scores array in ascending order
-        result.sort(function(a, b) {
-            return a.score - b.score
-        });
+        //Sort the scores array in descending order
+        result.sort((a, b) =>  b.score - a.score);
 
         //Only return the top three scores.
         if (result.length > 3) {
@@ -133,21 +120,17 @@ class Closet {
     //Return the Top 3 analogous outfits
     findBestAnalogs =  async (shortest, itemsA, itemsB) => {
         let color = new Color();
-        let matchingColors = [];
         let result = [];
         let topThree = [];
+
         for (let i = 0; i < shortest.length; i++) {
-            await color.getAnalog(shortest[i])
-            .then(res => matchingColors = res)
-            .catch(error => console.error(error))
+            const matchingColors = await color.getAnalog(shortest[i])
             let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, false)
             result.push(...scores);
         }
 
         //Sort the scores array in ascending order
-        result.sort(function(a, b) {
-            return a.score - b.score
-        });
+        result.sort((a, b) => a.score - b.score);
 
         //Only return the top three scores.
         if (result.length > 3) {
@@ -161,20 +144,16 @@ class Closet {
     //Return the Top 3 complementary outfits
     findBestComps =  async (shortest, itemsA, itemsB) => {
         let color = new Color();
-        let matchingColors = [];
         let result = [];
         let topThree = [];
+
         for (let i = 0; i < shortest.length; i++) {
-            await color.getComp(shortest[i])
-            .then(res => matchingColors = res)
-            .catch(error => console.error(error))
+            const matchingColors = await color.getComp(shortest[i])
             let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, true)
             result.push(...scores);
         }
 
-        result.sort(function(a, b) {
-            return a.score - b.score
-        });
+        result.sort((a, b) => a.score - b.score);
 
         //Only return the top three scores.
         if (result.length > 3) {
@@ -188,31 +167,28 @@ class Closet {
     //Calculates scores of an outfit
     findScores = async (top, bot, shoes) => {
         let color = new Color();
-        let matchingColors = [];
         let result = {
             mono: 0,
             analog: 0,
             comp: 0
         };
-        let score = 0;
+        var matchingColors = [];
+
         //Calculates score for monochromatic scheme
-        await color.getMono(top)
-        .then(res => matchingColors = res)
-        .catch(error => console.error(error))
-        score = this.matchingScore(matchingColors, bot.color, shoes.color);
-        result.mono = score;
+        matchingColors = await color.getMono(top);
+        result.mono = this.getMatchingScore(matchingColors, bot.color, shoes.color)
+        
+
         //Calculates score for analogous scheme
-        await color.getAnalog(top)
-        .then(res => matchingColors = res)
-        .catch(error => console.error(error))
-        score = this.matchingScore(matchingColors, bot.color, shoes.color);
-        result.analog = score;
+        matchingColors = await color.getMono(top);
+        result.analog = this.getMatchingScore(matchingColors, bot.color, shoes.color);
+
         //Calculates score for complementary scheme
-        await color.getComp(top)
-        .then(res => matchingColors = res)
-        .catch(error => console.error(error))
-        score = this.matchingScoreComp(matchingColors, bot.color, shoes.color);
-        result.comp = score;
+        matchingColors = await color.getComp(top);
+        result.comp = this.getMatchingScore(matchingColors, bot.color, shoes.color);
+
+        // console.log("SCORES", result)
+        
         return result;
     }
 
@@ -233,7 +209,7 @@ class Closet {
         if (comp) {
             for (let i = 0; i < itemsA.length; i++) {
                 for (let j = 0; j < itemsB.length; j++) {
-                    let score = this.matchingScoreComp(mColors, itemsA[i].color, itemsB[j].color);
+                    let score = this.getMatchingScore(mColors, itemsA[i].color, itemsB[j].color);
                     let evaluation = { 
                         score : score,
                         clothings: [item, itemsA[i], itemsB[j]]
@@ -244,7 +220,7 @@ class Closet {
         } else {
             for (let i = 0; i < itemsA.length; i++) {
                 for (let j = 0; j < itemsB.length; j++) {
-                    let score = this.matchingScore(mColors, itemsA[i].color, itemsB[j].color);
+                    let score = this.getMatchingScore(mColors, itemsA[i].color, itemsB[j].color);
                     let evaluation = { 
                         score : score,
                         clothings: [item, itemsA[i], itemsB[j]]
@@ -256,59 +232,99 @@ class Closet {
         return result;
     }
 
-    //Returns the matching score between an item's matching color rgbs and other items.
-    //The lower the score, the color matches more.
-    matchingScore = (mColors, colorA, colorB) => {
+    // Calculates cosine similarity (0, 1). Closer to 1 means more similar. Multiply it by 100 at the end.
+    getMatchingScore = (matchingColors, colorA, colorB) => {
+        var scoreA = 0
+        var scoreB = 0
+        if (Object.values(colorA).reduce((acc, current) => acc + current, 0) == 0) {
+            colorA = { r: 1, g: 1, b: 1}
+        }
+        if (Object.values(colorB).reduce((acc, current) => acc + current, 0) == 0) {
+            colorB = { r: 1, g: 1, b: 1}
+        }
+        for (const mColors of matchingColors) {
+            const mColorsArray = Object.values(mColors);
+            const colorAArray = Object.values(colorA);
+            const colorBArray = Object.values(colorB);
+            console.log(scoreA, colorAArray, mColorsArray)
+            scoreA = Math.max(scoreA, this.getCosineSimilarity(mColorsArray, colorAArray));
+            scoreB = Math.max(scoreB, this.getCosineSimilarity(mColorsArray, colorBArray));
+        }
+        const totalScore = (scoreA + scoreB) / 2 * 100;
+        return Math.round(totalScore)
+
+    }
+
+    getDotProduct = (vector1, vector2) => {
+        return vector1.reduce((acc, value, index) => acc + value * vector2[index], 0);
+    }
+
+    getMagnitude = (vector) => {
+        return Math.sqrt(vector.reduce((acc, value) => acc + value * value, 0));
+    }
+
+    getCosineSimilarity = (colorA, colorB) => {
+        const dotProd = this.getDotProduct(colorA, colorB);
+        const mag1 = this.getMagnitude(colorA);
+        const mag2 = this.getMagnitude(colorB);
+        return dotProd / (mag1 * mag2);
+    }
+
+    // Old Algorithm
+
+    // //Returns the matching score between an item's matching color rgbs and other items.
+    // //The lower the score, the color matches more.
+    // matchingScore = (mColors, colorA, colorB) => {
         
-        let scoreA = 1000;
-        let scoreB = 1000;
-        for (let i = 0; i < mColors.length; i++) {
-            let mCol = mColors[i];
-            let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
-            if (tempA < scoreA) {
-                scoreA = tempA;
-            }
-            let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
-            if (tempB < scoreB) {
-                scoreB = tempB
-            }
-        }
-        return scoreA + scoreB;
-    }
+    //     let scoreA = 1000;
+    //     let scoreB = 1000;
+    //     for (let i = 0; i < mColors.length; i++) {
+    //         let mCol = mColors[i];
+    //         let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
+    //         if (tempA < scoreA) {
+    //             scoreA = tempA;
+    //         }
+    //         let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
+    //         if (tempB < scoreB) {
+    //             scoreB = tempB
+    //         }
+    //     }
+    //     return scoreA + scoreB;
+    // }
 
-    matchingScoreComp = (mColors, colorA, colorB) => {
-        let scoreA = 1000;
-        let scoreB = 1000;
+    // matchingScoreComp = (mColors, colorA, colorB) => {
+    //     let scoreA = 1000;
+    //     let scoreB = 1000;
 
-        const contrast = Math.abs(colorB.r - colorA.r) + Math.abs(colorB.g - colorA.g) + Math.abs(colorB.b - colorA.b);
-        const blackWhiteA = Math.abs(colorA.r - colorA.g) < 10 && Math.abs(colorA.r - colorA.b) < 10 && Math.abs(colorA.g - colorA.b) < 10;
-        const blackWhiteB = Math.abs(colorB.r - colorB.g) < 10 && Math.abs(colorB.r - colorB.b) < 10 && Math.abs(colorB.g - colorB.b) < 10;
-        if (contrast > 400 && blackWhiteA && blackWhiteB) {
-            scoreB = 0;
-            for (let i = 0; i < mColors.length; i++) {
-                let mCol = mColors[i];
-                let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
-                let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
-                let lowest = Math.min(tempA, tempB);
-                if (lowest < scoreA) {
-                    scoreA = lowest
-                }
-            }   
-        } else {
-            for (let i = 0; i < mColors.length; i++) {
-                let mCol = mColors[i];
-                let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
-                if (tempA < scoreA) {
-                    scoreA = tempA;
-                }
-                let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
-                if (tempB < scoreB) {
-                    scoreB = tempB
-                }
-            }
-        }
-        return scoreA + scoreB;
-    }
+    //     const contrast = Math.abs(colorB.r - colorA.r) + Math.abs(colorB.g - colorA.g) + Math.abs(colorB.b - colorA.b);
+    //     const blackWhiteA = Math.abs(colorA.r - colorA.g) < 10 && Math.abs(colorA.r - colorA.b) < 10 && Math.abs(colorA.g - colorA.b) < 10;
+    //     const blackWhiteB = Math.abs(colorB.r - colorB.g) < 10 && Math.abs(colorB.r - colorB.b) < 10 && Math.abs(colorB.g - colorB.b) < 10;
+    //     if (contrast > 400 && blackWhiteA && blackWhiteB) {
+    //         scoreB = 0;
+    //         for (let i = 0; i < mColors.length; i++) {
+    //             let mCol = mColors[i];
+    //             let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
+    //             let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
+    //             let lowest = Math.min(tempA, tempB);
+    //             if (lowest < scoreA) {
+    //                 scoreA = lowest
+    //             }
+    //         }   
+    //     } else {
+    //         for (let i = 0; i < mColors.length; i++) {
+    //             let mCol = mColors[i];
+    //             let tempA = Math.abs(mCol.r - colorA.r) + Math.abs(mCol.g - colorA.g) + Math.abs(mCol.b - colorA.b);
+    //             if (tempA < scoreA) {
+    //                 scoreA = tempA;
+    //             }
+    //             let tempB = Math.abs(mCol.r - colorB.r) + Math.abs(mCol.g - colorB.g) + Math.abs(mCol.b - colorB.b);
+    //             if (tempB < scoreB) {
+    //                 scoreB = tempB
+    //             }
+    //         }
+    //     }
+    //     return scoreA + scoreB;
+    // }
 
 }
 

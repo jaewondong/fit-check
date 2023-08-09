@@ -5,6 +5,16 @@ const User = require('../model/User');
 const Closet = require('./Closet');
 const bcrypt = require('bcrypt')
 
+router.get('/', (req, res) => {
+  const apiInfo = {
+    name: 'Closet API',
+    description: 'This API provides endpoints for user registration, login, and more. For more information, please visit https://github.com/jaewondong/fit-check',
+    version: '1.0',
+    author: 'Jaewon Dong',
+  };
+
+  res.json(apiInfo);
+});
 
 router.post('/login', async (req, res) => {
     let closet = new Closet();
@@ -110,9 +120,11 @@ router.post('/findBestFits', async (req, res) => {
         const data = await closet.getClosetData(username);
         const clothingItems = data.closet;
         let bestFits = await closet.findBestFits(clothingItems);
+        console.log("BEST FITS", bestFits)
         res.header("Content-Type", 'application/json');
         res.send(bestFits);
-    } catch {
+    } catch (error) {
+        console.log("error", error)
         res.status(500).send();
     }
 })

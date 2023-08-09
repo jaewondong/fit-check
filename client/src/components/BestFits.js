@@ -25,13 +25,10 @@ function BestFits() {
     //Gets the user's closet from the backend server
     const getBestFits = async username => {
         
-        let data = null;
-        await axios.post('/findBestFits', {
+        const res = await axios.post('/findBestFits', {
             username: username
         })
-        .then(res => data=res.data)
-        .catch(error => console.error(error))
-        return data;
+        return res.data;
     }
 
     //Builds the best fits from the user's closet

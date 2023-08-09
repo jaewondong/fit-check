@@ -24,14 +24,14 @@ export default function SignUp() {
         navigate('/Closet')
     }
     
-    const handleSubmit = async event => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         let response = null;
 
         //make sure the user inputted both username and password.
         if (username && password) {
             
-            await axios.post('/signup', {
+            axios.post('/signup', {
             username, password
             })
             .then((res) => response = res)
