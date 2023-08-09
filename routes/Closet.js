@@ -96,7 +96,7 @@ class Closet {
         let color = new Color();
         let result = [];
         let topThree = [];
-        
+
         for (let i = 0; i < shortest.length; i++) {
             const matchingColors = await color.getMono(shortest[i])
             let scores = this.calculateScores(matchingColors, shortest[i], itemsA, itemsB, false);
@@ -234,23 +234,31 @@ class Closet {
 
     // Calculates cosine similarity (0, 1). Closer to 1 means more similar. Multiply it by 100 at the end.
     getMatchingScore = (matchingColors, colorA, colorB) => {
-        var scoreA = 0
-        var scoreB = 0
+        var scoreA = [];
+        var scoreB = [];
+
         if (Object.values(colorA).reduce((acc, current) => acc + current, 0) == 0) {
             colorA = { r: 1, g: 1, b: 1}
         }
         if (Object.values(colorB).reduce((acc, current) => acc + current, 0) == 0) {
             colorB = { r: 1, g: 1, b: 1}
         }
+
+        const colorAArray = Object.values(colorA);
+        const colorBArray = Object.values(colorB);
+
         for (const mColors of matchingColors) {
-            const mColorsArray = Object.values(mColors);
-            const colorAArray = Object.values(colorA);
-            const colorBArray = Object.values(colorB);
-            console.log(scoreA, colorAArray, mColorsArray)
-            scoreA = Math.max(scoreA, this.getCosineSimilarity(mColorsArray, colorAArray));
-            scoreB = Math.max(scoreB, this.getCosineSimilarity(mColorsArray, colorBArray));
+            var mColorsArray = Object.values(mColors);
+            if (mColorsArray.reduce((acc, current) => acc + current, 0) == 0) {
+                mColorsArray = [1, 1, 1]
+            }
+            scoreA.push(this.getCosineSimilarity(mColorsArray, colorAArray));
+            scoreB.push(this.getCosineSimilarity(mColorsArray, colorBArray));
         }
-        const totalScore = (scoreA + scoreB) / 2 * 100;
+
+        const averageScoreA = scoreA.reduce((total, current) => total + current, 0) / scoreA.length;
+        const averageScoreB = scoreB.reduce((total, current) => total + current, 0) / scoreB.length;
+        const totalScore = (averageScoreA + averageScoreB) / 2 * 100;
         return Math.round(totalScore)
 
     }

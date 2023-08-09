@@ -31,7 +31,7 @@ export default function SignUp() {
         //make sure the user inputted both username and password.
         if (username && password) {
             
-            axios.post('/signup', {
+            axios.post('/api/signup', {
             username, password
             })
             .then((res) => response = res)

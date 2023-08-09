@@ -25,7 +25,7 @@ function BestFits() {
     //Gets the user's closet from the backend server
     const getBestFits = async username => {
         
-        const res = await axios.post('/findBestFits', {
+        const res = await axios.post('/api/findBestFits', {
             username: username
         })
         return res.data;

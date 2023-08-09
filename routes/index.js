@@ -27,7 +27,7 @@ router.post('/login', async (req, res) => {
     //res.send(JSON.stringify(user));
     //console.log(JSON.stringify(user));
     try {
-        if (await bcrypt.compare(req.body.password, user.password)) {
+        if (bcrypt.compare(req.body.password, user.password)) {
             res.send(JSON.stringify(user))
         } else {
             res.send(null)
@@ -120,7 +120,6 @@ router.post('/findBestFits', async (req, res) => {
         const data = await closet.getClosetData(username);
         const clothingItems = data.closet;
         let bestFits = await closet.findBestFits(clothingItems);
-        console.log("BEST FITS", bestFits)
         res.header("Content-Type", 'application/json');
         res.send(bestFits);
     } catch (error) {

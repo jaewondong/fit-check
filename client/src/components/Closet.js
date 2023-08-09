@@ -18,7 +18,7 @@ function Closet() {
 
     //Get the user's closet from the backend server
     const getCloset = async username => {
-        let res = await axios.post('/closet', { 
+        let res = await axios.post('/api/closet', { 
                 username: username
         })
         // axios.post('/closet', { 
@@ -36,7 +36,7 @@ function Closet() {
             setCloset(data);
         };
         getData()
-        console.log('run!')
+        // console.log('run!')
     }, [add, del] );
     
     //Handles the add button change
@@ -55,7 +55,7 @@ function Closet() {
     const addClothing = (clothing) => {
         showAdd();
         let username = getUsername();
-        axios.post('/addClothing', { 
+        axios.post('/api/addClothing', { 
             username: username,
             clothing: clothing
         })
@@ -66,7 +66,7 @@ function Closet() {
     const delClothing = (clothing) => {
         showDel();
         let username = getUsername();
-        axios.post('/delClothing', { 
+        axios.post('/api/delClothing', { 
             username: username,
             clothing: clothing
         })

@@ -41,14 +41,14 @@ export default function Login() {
         if (!username || !password) {
             return setError(true);
         }
-        await axios.post('/login', {
+        await axios.post('/api/login', {
             username, password
         })
         .then((res) => response = res)
         .catch((error) => console.error(error));
 
         resetState();
-        console.log(response);
+        // console.log(response);
 
         if (!response || !response.data) {
             setError(true);

@@ -44,7 +44,7 @@ function Score() {
     useEffect( () => {
         const getScore = async () => {
             const outfit = getOutfit();
-            const result = await axios.post('/score', {
+            const result = await axios.post('/api/score', {
                 outfit: outfit
             })
             let data = result.data;

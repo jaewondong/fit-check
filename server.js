@@ -15,7 +15,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 
-app.use('/', routes);
+app.use('/api', routes);
 app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
